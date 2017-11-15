@@ -83,33 +83,34 @@ function parseCode(code){
     for(var i=0;i<script.length;i++){
         //Parse the code and translate to javascript
         currentLine = i;
+        //Check if the line is a comment, do nothing if it is
+        if(!script[currentLine].includes(";")){
+            if(script[currentLine].includes("#SAY")){parseSay(script[currentLine])}
+            if(script[currentLine].includes("#IF")){parseIf(script[currentLine])}
+            if(script[currentLine].includes("#ACT")){parseAct(script[currentLine])}
+            if(script[currentLine].includes("#ELSEACT")){parseElseAct(script[currentLine])}
+            if(script[currentLine].includes("#ELSESAY")){parseElseSay(script[currentLine])}
+            if(script[currentLine].includes("[@")){parsePage(script[currentLine])} //Is a new page
         
-        if(script[currentLine].includes("#SAY")){parseSay(script[currentLine])}
-        if(script[currentLine].includes("#IF")){parseIf(script[currentLine])}
-        if(script[currentLine].includes("#ACT")){parseAct(script[currentLine])}
-        if(script[currentLine].includes("#ELSEACT")){parseElseAct(script[currentLine])}
-        if(script[currentLine].includes("#ELSESAY")){parseElseSay(script[currentLine])}
-        if(script[currentLine].includes("[@")){parsePage(script[currentLine])} //Is a new page
-        
-        //Parse the say commands
-        if(scriptMode == "SAY"){
-            parseSpeech(script[currentLine]); //We are in say mode, treat every line as text
-        }
-        if(scriptMode=="ACT"){
-            parseGoto(script[currentLine]);
-            parseGiveGold(script[currentLine]);
-        }
-        if(scriptMode == "IF"){
-            parseCheckLevel(script[currentLine]);
-            parseIsAdmin(script[currentLine]);
-            parseCheckItem(script[currentLine]);
-            parseCheckPKPoint(script[currentLine]);
-            parseConquestAvailable(script[currentLine]);
-            parseCheckGender(script[currentLine]);
-        }
+            //Parse the say commands
+            if(scriptMode == "SAY"){
+                parseSpeech(script[currentLine]); //We are in say mode, treat every line as text
+            }
+            if(scriptMode=="ACT"){
+                parseGoto(script[currentLine]);
+                parseGiveGold(script[currentLine]);
+            }
+            if(scriptMode == "IF"){
+                parseCheckLevel(script[currentLine]);
+                parseIsAdmin(script[currentLine]);
+                parseCheckItem(script[currentLine]);
+                parseCheckPKPoint(script[currentLine]);
+                parseConquestAvailable(script[currentLine]);
+                parseCheckGender(script[currentLine]);
+            }
 
+        }
     }
-
     //End the script and run it
     if(errors==false){
         if(scriptMode == "SAY"){scriptJS+="';"} //Finish say command if it hasnt already ended
