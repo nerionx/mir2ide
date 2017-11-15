@@ -1,0 +1,25 @@
+[@main]
+#SAY
+Hello my name is daisy
+
+What can I do for you today?
+
+<Tell me a joke/@joke>           <Go away/@away>
+
+[@joke]
+#SAY
+Whats brown and sticky?
+<Dont know/@joke2>
+
+[@joke2]
+#SAY
+A stick!
+
+<main page/@main>
+
+[@away]
+#SAY
+How rude!
+I know who you are <$USERNAME>
+
+<back to main page/@main>
