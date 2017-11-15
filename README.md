@@ -15,4 +15,6 @@ finishing adding the #IF commands
 Add more sanity checks it is important the app displays an error with the script line rather than a console error on the 
 generated javascript as this is useless to an end user.
 
+parseSpeech() probably needs refactoring
+
 Prettify the entire APP
