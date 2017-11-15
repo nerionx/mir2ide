@@ -1,0 +1,42 @@
+body {
+    background-color: black;
+}
+heading{
+    background-color: black;
+    color: white;
+}
+#headingtext{
+    color: white;
+    text-align: center;
+}
+table {
+    border: groove;
+    border-color: black;
+}
+th {
+    text-align: center;
+    color: white;
+    background-color: #0D064B;
+    height: 2%;
+    font-size: 1.2em;
+}
+
+td{
+    background-color: white;
+    vertical-align: top;
+}
+#console{
+    height:15%;
+
+}
+#simulator{
+    width: 70%;
+}
+
+#simulatortable{
+    border: none;
+
+}
+span{
+    color: green;
+}

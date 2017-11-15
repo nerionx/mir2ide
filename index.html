@@ -1,0 +1,40 @@
+<html>
+    <head>
+       <link rel="stylesheet" href="css/index.css">
+        <script src="src/jquery-3.2.1.min.js"></script>
+        <script src="src/parseScript.js"></script>
+        <script src="src/parseIf.js"></script>
+        <script src="src/parseAct.js"></script>
+        <script src="src/parseSay.js"></script>
+    </head>
+     <heading>
+         <div id="headingtxt" style="text-align: center; font-size: 1.5em; ">The Legend of Mir NPC Emulator</div>
+    </heading>
+  <body>
+    <table width="100%" height="100%" id="mainsite">
+        <tr><th>Simulator</th><th>Variables</th></tr>
+        <tr><td id="simulator">
+        <table id="simulatortable">
+            <tr><td><img id="npcsprite" src="img/npc1.png">
+            </td><td><div id="simulatorSpeech"></div></td></tr>
+        </table>   
+        </td><td rowspan = "2" id="variables">
+            Player Name <input type="text" id="playername" onchange="refeshvariables()"><script>document.getElementById("playername").value = simPlayerName</script><bR>
+            Player Level <input type="number" onchange = "refreshvariables()" id="level" value=simLevel><script>document.getElementById("level").value = simLevel</script>
+        </td></tr>
+        <tr><td id="script"><textarea cols="140" rows="15" id="codebox" onchange="startParse(this)"></textarea>
+            <div class="container"></div>
+        </td>
+        </tr>
+        <tr><th colspan="2">Console</th></tr>
+        <tr><td colspan="2" id="console"><div id="consolelog">No Errors</div></td></tr>
+    </table>
+<script>
+    function refreshvariables(){
+        //Code for setting the variables up if the boxes are changed
+        simPlayerName = document.getElementById("playername").value;
+        simLevel = document.getElementById("level").value;
+    }
+</script>
+  </body>
+</html>
