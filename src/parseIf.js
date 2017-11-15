@@ -97,13 +97,31 @@ function parseCheckGender(code){
 //RANDOM script command takes a random number from 0 to value entered, and returns true if the result is the value entered
 //E.g. RANDOM 10 (Has a 10% chance of being true)
 
-function parseRandom(){
+function parseRandom(code){
     if(code.includes("RANDOM")){
         var randomNumber = code.replace("RANDOM ","");
         if(!isNaN(parseInt(randomNumber,10))){
             scriptJS += "Math.floor(Math.random()*"+randomNumber+") == "+ randomNumber;
         }else{
             writeError("RANDOM must be followed by a valid integer e.g. RANDOM 10",currentLine);
+        }
+    }
+}
+//has 2 behaviors, without an overload it checks if the player is in a guild, with an overload it checks if the player is in the specified guild
+function parseInGuild(code){
+    if(code.includes("INGUILD")){
+        //Is there a space after INGUILD, if so lets assume there is an overload
+        if(code.includes("INGUILD ")){
+            var guildName = code.replace("INGUILD ","");
+            //Sanity check - did we actually recover a guildname? or was the space after inguild a mistake
+            if(guildName !== ""){
+                scriptJS +="simGuildName == '" + guildName+"'"; //Compare the 2 guild names
+            }else{
+                //If we get here technically the syntax on INGUILD is incorrect (there is an extra space), however the game wont care so dont error
+                scriptJS+= "simGuildName !== ''"; //We didnt find a guild name so just check if in any guild
+            }
+        }else{
+            scriptJS += "simGuildName !== ''"; //Check if any guild
         }
     }
 }

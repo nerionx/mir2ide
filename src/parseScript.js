@@ -9,11 +9,12 @@ var currentLine = 0;
 simGameGold = 10000; //How much gold the player is holding
 simPlayerName = "Player"; //The name of the current player
 simNPCName = "Anna"; //The name of the NPC
-simX = "50" //The players current X position
-simY = "100" //The players current Y position
-simLevel = "22" //The players current level
-simClass = "Taoist" //the players current class
-simUserCount = "15" //The current server user count
+simX = "50"; //The players current X position
+simY = "100"; //The players current Y position
+simLevel = "22"; //The players current level
+simClass = "Taoist"; //the players current class
+simGuildName = "Default Guild"; //The players current guild - if blank assume no guild
+simUserCount = "15"; //The current server user count
 simDate = getTodaysDate();
 simIsAdmin = false; //is the player an admin
 simItemName = [];
@@ -39,7 +40,7 @@ simHelmet = "BronzeHelmet";
 simAmulet = "Amulet"; //The name of the amulet (not count)
 simStone = "DCStone";
 simTorch = "EternalFlame"; //Name of torch not dura
-simCredit = "1000" //Amount of gameshop credit
+simCredit = "1000"; //Amount of gameshop credit
 simConquestOwner = false //should I conquest war owner checks
 simConquestGuard = "Archer - Still Alive";
 simConquestGate = "Gate - Still Alive";
@@ -108,6 +109,7 @@ function parseCode(code){
                 parseConquestAvailable(script[currentLine]);
                 parseCheckGender(script[currentLine]);
                 parseRandom(script[currentLine]);
+                parseInGuild(script[currentLine]);
             }
 
         }
