@@ -3,6 +3,10 @@ function parseAct(code){
         scriptJS +="';"
         scriptMode == "ACT";
     }
+    if(scriptMode == "IF"){
+        scriptJS +="){";
+    }
+    scriptMode = "ACT";
 }
 
 function parseElseAct(){
@@ -13,7 +17,7 @@ function parseElseAct(){
     }
     scriptMode = "ACT";
     scriptJS +="}else{";
-    openIf2=true;
+    openIf=true;
 }
 
 function parseGoto(code){
