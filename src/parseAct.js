@@ -45,6 +45,25 @@ function parseGiveItem(code){
     AddItem(itemname, itemamount);
 }
 
+//Move moves a value into a variable, because we are using eval we dont need to define an area to store these beforehand just append simVar_ to every variable name to avoid conflicts
+function parseMov(code){
+    if(code.includes("MOV")){
+        var newCode = code.replace("MOV",""); //Our string now only contains the variable name and the value
+        var a = newCode.indexOf(" ");
+        var mirvar = newcode.substr(0,a); //Only contains the variable name
+        newcode = newcode.replace(mirvar+ " ",""); //Only contains the variable value
+
+        scriptJS += "var simVar_" + mirvar + " = " + newcode +";";
+    }
+}
+
+//Adds variables and values together
+function parseCalc(code){
+    if(code.includes("CALC")){
+        code = code.replace("CALC ","");
+
+    }
+}
 function AddItem(itemname, itemamount){
     //Add items to the array
     simItemName[simItemName.length] = itemname;
