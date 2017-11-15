@@ -1,0 +1,15 @@
+[@main]
+#IF
+LEVEL == 21
+#ACT
+GOTO @21
+#ELSEACT
+GOTO @not
+
+[@21]
+#SAY
+You are 21
+
+[@not]
+#SAY
+You are not 21

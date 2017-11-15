@@ -12,6 +12,7 @@ simNPCName = "Anna"; //The name of the NPC
 simX = "50"; //The players current X position
 simY = "100"; //The players current Y position
 simLevel = "22"; //The players current level
+simGender = "male";
 simClass = "Taoist"; //the players current class
 simGuildName = "Default Guild"; //The players current guild - if blank assume no guild
 simUserCount = "15"; //The current server user count

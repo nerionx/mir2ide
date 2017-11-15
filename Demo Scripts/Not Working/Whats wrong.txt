@@ -1,0 +1,3 @@
+Blacksmith- No support for quests or item sales
+
+Administrator - Needs functions for guild creation and war requests, also needs support for text colours

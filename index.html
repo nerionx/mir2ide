@@ -20,7 +20,10 @@
         </table>   
         </td><td rowspan = "2" id="variables">
             Player Name <input type="text" id="playername" onchange="refeshvariables()"><script>document.getElementById("playername").value = simPlayerName</script><bR>
-            Player Level <input type="number" onchange = "refreshvariables()" id="level" value=simLevel><script>document.getElementById("level").value = simLevel</script>
+            Player Level <input type="number" onchange = "refreshvariables()" id="level" value=simLevel><script>document.getElementById("level").value = simLevel</script><br>
+            Gender <input type="text" id="gender" onchange="refeshvariables()"><script>document.getElementById("gender").value = simGender</script><bR>
+            PosX<input class="posbox" type="number" onchange = "refreshvariables()" id="PosX" value=simX><script>document.getElementById("PosX").value = simX</script>
+            PosY<input class="posbox" type="number" onchange = "refreshvariables()" id="PosY" value=simY><script>document.getElementById("PosY").value = simY</script>
         </td></tr>
         <tr><td id="script"><textarea cols="140" rows="15" id="codebox" onchange="startParse(this)"></textarea>
             <div class="container"></div>
@@ -34,6 +37,9 @@
         //Code for setting the variables up if the boxes are changed
         simPlayerName = document.getElementById("playername").value;
         simLevel = document.getElementById("level").value;
+        simGender = document.getElementById("gender").value;
+        simX = document.getElementById("PosX").value;
+        simY = document.getElementById("PosY").value;
     }
 </script>
   </body>
