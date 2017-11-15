@@ -94,6 +94,19 @@ function parseCheckGender(code){
     }
 }
 
+//RANDOM script command takes a random number from 0 to value entered, and returns true if the result is the value entered
+//E.g. RANDOM 10 (Has a 10% chance of being true)
+
+function parseRandom(){
+    if(code.includes("RANDOM")){
+        var randomNumber = code.replace("RANDOM ","");
+        if(!isNaN(parseInt(randomNumber,10))){
+            scriptJS += "Math.floor(Math.random()*"+randomNumber+") == "+ randomNumber;
+        }else{
+            writeError("RANDOM must be followed by a valid integer e.g. RANDOM 10",currentLine);
+        }
+    }
+}
 function checkOpenIf(){;
     if(openIf==true && scriptMode == "IF"){
         scriptJS += " && "; //looks like we are checking for multiple values so we add an AND

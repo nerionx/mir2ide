@@ -107,6 +107,7 @@ function parseCode(code){
                 parseCheckPKPoint(script[currentLine]);
                 parseConquestAvailable(script[currentLine]);
                 parseCheckGender(script[currentLine]);
+                parseRandom(script[currentLine]);
             }
 
         }
