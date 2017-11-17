@@ -1,46 +1,70 @@
 <html>
     <head>
-       <link rel="stylesheet" href="css/index.css">
+       <link rel="stylesheet" href="css/bootstrap.css">
+       <link rel="stylesheet" href="css/index2.css">
         <script src="src/jquery-3.2.1.min.js"></script>
+        <script src="src/bootstrap.bundle.min.js"></script>
         <script src="src/parseScript.js"></script>
         <script src="src/parseIf.js"></script>
         <script src="src/parseAct.js"></script>
         <script src="src/parseSay.js"></script>
+        <script src="src/gui.js"></script>
     </head>
      <heading>
-         <div id="headingtxt" style="text-align: center; font-size: 1.5em; ">The Legend of Mir NPC Emulator</div>
+        <div class="bg-info text-white text-center">The Legend of Mir 2 - Script Editor</div>
     </heading>
   <body>
-    <table width="100%" height="100%" id="mainsite">
-        <tr><th>Simulator</th><th>Variables</th></tr>
-        <tr><td id="simulator">
-        <table id="simulatortable">
-            <tr><td><img id="npcsprite" src="img/npc1.png">
-            </td><td><div id="simulatorSpeech"></div></td></tr>
-        </table>   
-        </td><td rowspan = "2" id="variables">
-            Player Name <input type="text" id="playername" onchange="refeshvariables()"><script>document.getElementById("playername").value = simPlayerName</script><bR>
-            Player Level <input type="number" onchange = "refreshvariables()" id="level" value=simLevel><script>document.getElementById("level").value = simLevel</script><br>
-            Gender <input type="text" id="gender" onchange="refeshvariables()"><script>document.getElementById("gender").value = simGender</script><bR>
-            PosX<input class="posbox" type="number" onchange = "refreshvariables()" id="PosX" value=simX><script>document.getElementById("PosX").value = simX</script>
-            PosY<input class="posbox" type="number" onchange = "refreshvariables()" id="PosY" value=simY><script>document.getElementById("PosY").value = simY</script>
-        </td></tr>
-        <tr><td id="script"><textarea cols="140" rows="15" id="codebox" onchange="startParse(this)"></textarea>
-            <div class="container"></div>
-        </td>
-        </tr>
-        <tr><th colspan="2">Console</th></tr>
-        <tr><td colspan="2" id="console"><div id="consolelog">No Errors</div></td></tr>
-    </table>
-<script>
-    function refreshvariables(){
-        //Code for setting the variables up if the boxes are changed
-        simPlayerName = document.getElementById("playername").value;
-        simLevel = document.getElementById("level").value;
-        simGender = document.getElementById("gender").value;
-        simX = document.getElementById("PosX").value;
-        simY = document.getElementById("PosY").value;
-    }
-</script>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#">File</a>
+      <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">New File</a>
+          <div class="dropdown-divider"></div>          
+          <a class="dropdown-item" href="#" onclick="openFile()">Open<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
+          <a class="dropdown-item" href="#">Save</a>
+          <a class="dropdown-item" href="#">Save As</a>
+          <a class="dropdown-item" href="#">Close Window</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Exit</a>
+      </div>
+      
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="#simulatorModal" onclick="startParse()" data-target="#simulatorModal" data-toggle="modal"><span class="glyphicon glyphicon-play-circle"></span>Run</a>
+          </li>
+          <li>
+          <a class="nav-link" href="#"><span class="glyphicon glyphicon-play-circle"></span>Check</a>
+      </li>
+      </ul>
+  </nav>
+
+  <div id="diveditor">
+      <span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:70%" contenteditable="true" id="editor" class="code-editor bg-dark text-white"></span>
+      <header style="border:1pt;border-style:solid;" class="bg-info text-white text-center">Console</header>
+      <span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:20%" id="script-console" class="code-console bg-dark text-white"></span>
+    
+  </div>
+
+  <!--Simulator Modal -->
+  <div id="simulatorModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class ="modal-title">NPC Simulator</h4>
+              </div>
+              <div class="modal-body">
+                  <p id="simulatorSpeech">Some text in the modal</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" onclick="refreshSim()">Refresh</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
   </body>
 </html>

@@ -61,7 +61,8 @@ function getTodaysDate(){
     return date;
 }
 
-function startParse(codebox){
+function startParse(){
+    codebox = document.getElementById("editor");
     scriptJS = ""
     script = [];
     scriptMode = "ACT";
@@ -70,7 +71,7 @@ function startParse(codebox){
     errors = false;
     writeError("No Errors");
     errors = false;
-    parseCode(codebox.value);
+    parseCode(codebox.innerText);
     console.log(scriptJS);
 
 }
@@ -145,7 +146,7 @@ function writeError(msg,line=0){
     if(!line==0){
         msg2 += " on line number " + line;
     }
-    document.getElementById("consolelog").innerHTML = msg2;
+    document.getElementById("script-console").innerHTML = msg2;
     }
 //Gets the next line of code out of the script for parsing
 function getLines(code){
@@ -278,7 +279,7 @@ function parseSpeech(code){
             //Write a javascript function
             buttonFunction = buttonFunction.replace("-","__"); //Functions in JS cannot have - in them so replace it with __
             buttonFunction = buttonFunction.toUpperCase();
-            jsfunc[i] ="<span onclick=\"npc_"+buttonFunction+"()\">"+buttonText+"</span>"
+            jsfunc[i] ="<span class=\"mirbutton\" onclick=\"npc_"+buttonFunction+"()\">"+buttonText+"</span>"
             jsreplace[i] = newSpeech.substr(k[i],j[i]-k[i]+1);
             
         }
@@ -288,6 +289,28 @@ function parseSpeech(code){
         }
     
     //Test for colours
+    var l =[];
+    var m = [];
+
+    if(newSpeech.includes("{")){
+        //There could be multiple colours so we must find the index of all of them
+        var colorIndices = getIndicesOf("{",newSpeech,false);
+        //iterate through all of the colours found
+        for(var i=0;i<colorIndices.length;i++){
+            //find the end of the text
+            l[i] = newSpeech.indexOf("/",colorIndices[i]);
+            var colorText = newSpeech.substr(colorIndices[i]+1,l[i]-colorIndices[i]-1);
+            //find the end of the colour
+            m[i] = newSpeech.indexOf("}",colorIndices[i]);
+            var setColor = newSpeech.substr(l[i]+1,m[i]-l[i]-1);
+            console.log(colorText + " " + setColor);           
+            colourReplace = newSpeech.substr(colorIndices[i],m[i]);
+            console.log(colourReplace);
+            colorReplacement = "<span style=\"color: " + setColor + ";\">" + colorText + "</span>";
+            newSpeech = newSpeech.replace(colourReplace,colorReplacement);           
+        }
+
+    }
 
 
     //Test for invalid variables (All should of been replaced by now so look for <$ if it exists its invalid)
@@ -332,4 +355,8 @@ function sanityCheck(code){
     if(code.includes("]")){return true}
     if(code.includes("<$")){return true}
     return false;
+}
+
+function refreshSim(){
+    startParse();
 }
