@@ -304,7 +304,7 @@ function parseSpeech(code){
             m[i] = newSpeech.indexOf("}",colorIndices[i]);
             var setColor = newSpeech.substr(l[i]+1,m[i]-l[i]-1);
             console.log(colorText + " " + setColor);           
-            colourReplace = newSpeech.substr(colorIndices[i],m[i]);
+            colourReplace = newSpeech.substr(colorIndices[i],m[i]-colorIndices[i]+1);
             console.log(colourReplace);
             colorReplacement = "<span style=\"color: " + setColor + ";\">" + colorText + "</span>";
             newSpeech = newSpeech.replace(colourReplace,colorReplacement);           

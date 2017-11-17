@@ -1,0 +1,18 @@
+[@main]
+#SAY
+Hello {<$USERNAME>/BLUE}
+My name is daisy, what can I do for you today?
+
+<Tell me a joke/@joke>
+
+[@joke]
+#SAY
+Whats {brown/BROWN} and sticky?
+
+<Don't know/@dont>
+
+[@dont]
+#SAY
+A STICK!
+
+<main page/@main>
