@@ -291,6 +291,8 @@ function parseSpeech(code){
     //Test for colours
     var l =[];
     var m = [];
+    var colorReplacement = [];
+    var colorReplace = [];
 
     if(newSpeech.includes("{")){
         //There could be multiple colours so we must find the index of all of them
@@ -303,14 +305,16 @@ function parseSpeech(code){
             //find the end of the colour
             m[i] = newSpeech.indexOf("}",colorIndices[i]);
             var setColor = newSpeech.substr(l[i]+1,m[i]-l[i]-1);
-            console.log(colorText + " " + setColor);           
-            colourReplace = newSpeech.substr(colorIndices[i],m[i]-colorIndices[i]+1);
-            console.log(colourReplace);
-            colorReplacement = "<span style=\"color: " + setColor + ";\">" + colorText + "</span>";
-            newSpeech = newSpeech.replace(colourReplace,colorReplacement);           
+            colorReplace[i] = newSpeech.substr(colorIndices[i],m[i]-colorIndices[i]+1);
+            colorReplacement[i] = "<span style=\"color: " + setColor + ";\">" + colorText + "</span>";
         }
+        for(var i=0;i<colorReplacement.length;i++){
 
+            newSpeech = newSpeech.replace(colorReplace[i],colorReplacement[i]);           
+        }
     }
+
+    
 
 
     //Test for invalid variables (All should of been replaced by now so look for <$ if it exists its invalid)
