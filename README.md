@@ -4,7 +4,6 @@ add them ingame.
 It is very incomplete but the groundwork is there and initial tests show it to be sound.
 
 TODO:
-Add colour parsing for #SAY
 Add the rest of the user variables so they can be changed
 Add support for [QUESTS]
 Add support for [ITEMS]
@@ -16,5 +15,3 @@ Add more sanity checks it is important the app displays an error with the script
 generated javascript as this is useless to an end user.
 
 parseSpeech() probably needs refactoring
-
-Prettify the entire APP
