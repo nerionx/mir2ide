@@ -28,6 +28,18 @@ function parseGoto(code){
         scriptJS +="npc_" + code + "()";
     }
 }
+//Changes page after a certain time has passed, expects DELAYGOTO [pagename] [time]
+function parseDelayGoto(code){
+    if(code.includes("DELAYGOTO")){
+        //Sanity Check
+        if(!code.includes("@")){writeError("No goto page specified",currentLine);}
+        
+        //Parse
+        code = code.replace("DELAYGOTO @","");
+
+
+    }
+}
 
 function parseGiveGold(code){
     if(code.includes("GIVEGOLD")){

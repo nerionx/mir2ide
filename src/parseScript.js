@@ -4,6 +4,7 @@ var script = []; //Contains the script with each line seperated into its own ind
 var inPage = false; //are we currently inside a page
 var scriptMode = "ACT"; //What mode are we currently in -SAY ACT IF
 var currentLine = 0;
+var hadWriteError=false;
 
 //Simulator variables
 simGameGold = 10000; //How much gold the player is holding
@@ -153,6 +154,13 @@ function getLines(code){
     script = code.split("\n");
     console.log("Script is " + script.length + " lines");
     return script.length;
+}
+
+//Replacement for write error, allowing warnings aswelll as criticals which will stop parsing
+function writeError2(msg,line=0,type="critical"){
+    if(type=="critical"){errors=true} //Critical error dont run the parsed code as it will be incorrect
+    
+
 }
 
 
