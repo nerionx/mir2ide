@@ -2,3 +2,8 @@
     cursor: hand;
     color: green;
 }
+
+#editor{
+    width: 100%;
+    height: 100%
+}

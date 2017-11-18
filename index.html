@@ -2,8 +2,14 @@
     <head>
        <link rel="stylesheet" href="css/bootstrap.css">
        <link rel="stylesheet" href="css/index2.css">
+       <link rel="stylesheet" href="css/codemirror.css">
         <script src="src/jquery-3.2.1.min.js"></script>
         <script src="src/bootstrap.bundle.min.js"></script>
+        <script src="src/codemirror.js"></script>
+        <script src="src/simple.js"></script>
+        <script src="src/define_grammar_mode.js"></script>
+        <script src="src/codemirror_grammar.min.js"></script>
+        <script src="src/mirscript.js"></script>
         <script src="src/parseScript.js"></script>
         <script src="src/parseIf.js"></script>
         <script src="src/parseAct.js"></script>
@@ -40,10 +46,14 @@
   </nav>
 
   <div id="diveditor">
-      <span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:70%" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" id="editor" class="code-editor bg-dark text-white"></span>
+      <!--<span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:70%" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" id="editor" class="code-editor bg-dark text-white"></span>-->
+      <textarea id="editor"></textarea>
       <header style="border:1pt;border-style:solid;" class="bg-info text-white text-center">Console</header>
       <span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:20%" id="script-console" class="code-console bg-dark text-white"></span>
-    
+      <!--Code mirror-->
+      <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor"),{lineNumbers: true, mode: "mirscript"});
+      </script>
   </div>
 
   <!--Simulator Modal -->

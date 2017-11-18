@@ -63,7 +63,7 @@ function getTodaysDate(){
 }
 
 function startParse(){
-    codebox = document.getElementById("editor");
+    codebox = editor.doc.getValue();
     scriptJS = ""
     script = [];
     scriptMode = "ACT";
@@ -72,7 +72,7 @@ function startParse(){
     errors = false;
     writeError("No Errors");
     errors = false;
-    parseCode(codebox.innerText);
+    parseCode(codebox);
     console.log(scriptJS);
 
 }
