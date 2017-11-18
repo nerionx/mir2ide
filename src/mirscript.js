@@ -19,6 +19,9 @@ codemirror_define_grammar_mode("mirscript", {
 ,"number"                       : "number"
 ,"string"                       : "string"
 ,"regex"                        : "string-2"
+,"button"                       : "tag"
+,"tag"                          : "variable-2"
+,"coloured_text"                : "variable-2"
 
 },
 
@@ -58,7 +61,20 @@ codemirror_define_grammar_mode("mirscript", {
                               }
 ,"regex"                        : {"type":"escaped-block","escape":"\\","tokens":
                               // javascript literal regular expressions can be parsed similar to strings
-                              [ "[",    "RE::#][gimy]{0,4}#" ]
+                              ["[","]"                
+                              ]
+                              }
+,"button"                        : {"type":"escaped-block","escape":"\\","tokens":
+                              // javascript literal regular expressions can be parsed similar to strings
+                              ["<",">"                
+                              ]
+                          
+                              }
+,"coloured_text"                 : {"type":"escaped-block","escape":"\\","tokens":
+                              // javascript literal regular expressions can be parsed similar to strings
+                              ["/","}"                
+                              ]
+                          
                               }
 ,"operator"                     : {"tokens":[
                               "+", "-", "++", "--", "%", ">>", "<<", ">>>",
@@ -66,11 +82,6 @@ codemirror_define_grammar_mode("mirscript", {
                               ">", "<", "<=", ">=", "!=", "!==",
                               "=", "==", "===", "+=", "-=", "%=",
                               ">>=", ">>>=", "<<=", "*=", "/=", "|=", "&="
-                              ]}
-,"delimiter"                    : {"tokens":[
-                              "(", ")", "[", "]", "{", "}", "@", "=", ";", "?", ":",
-                              "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "++", "--",
-                              ">>=", "<<="
                               ]}
 ,"atom"                         : {"autocomplete":true,"tokens":[
                               "true", "false", 
@@ -104,8 +115,8 @@ codemirror_define_grammar_mode("mirscript", {
 // Syntax model (optional)
 "Syntax"                            : {
 
-"dot_property"                  : {"sequence":[".", "property"]}
-,"js"                           : "comment | tag | number | string | regex | keyword | operator | atom | (('}' | ')' | builtin | identifier | dot_property) dot_property*)"
+
+"js"                           : "comment | tag | number | string | regex | button | keyword | operator | atom | builtin | tag | coloured_text | identifier"
 
 },
 
