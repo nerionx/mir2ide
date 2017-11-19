@@ -54,6 +54,11 @@ simConquestSchedule = "BadAssGuild"; //Do any guild has a war sheduled
 simMapName = "BichonProvince";
 simItem = true; //should we pass item checks
 simConquestAvailable = true;
+simGuildGold = 1000000; //How much gold the guild has
+simGuardCost = 1000;
+simGateCost = 1000;
+simSiegeCost = 1000;
+simWallCost = 1000;
 
 //Used for <$DATE> in #SAY
 function getTodaysDate(){
@@ -82,6 +87,7 @@ function parseCode(code, run=true){
     if(getLines(code)==0){return} //Check there is code
     if(!checkMain(code)){ return} //Check there is an entry point
     if(!code.includes("#")){writeError("No mode was ever specified, are you missing a #SAY,#ACT or #IF");return}
+    checkDupePages();
 
     //Loop through all the npc script and parse it line by line
     for(var i=0;i<script.length;i++){
@@ -122,6 +128,11 @@ function parseCode(code, run=true){
                 parseRandom(script[currentLine]);
                 parseInGuild(script[currentLine]);
                 parseCheckGold(script[currentLine]);
+                parseConquesOwner(script[currentLine]);
+                parseAffordGate(script[currentLine]);
+                parseAffordGuard(script[currentLine]);
+                parseAffordSiege(script[currentLine]);
+                parseAffordWall(script[currentLine]);
             }
 
         }
@@ -348,8 +359,6 @@ function parseSpeech(code){
     //Add strings to speech array
         scriptJS += newSpeech +"<br>";
     
-    }else{
-        console.log("Failed to run on: "+ code);
     }
 }
 
@@ -383,7 +392,18 @@ function sanityCheck(code){
     if(code.includes("<$")){return true}
     return false;
 }
-
+//Look for duplicate page names, this code works but its pretty slow.. It could be better (Create a list of pagenames instead of checking every line for example)
+function checkDupePages(){
+    for(var i=0;i<script.length;i++){
+        if(script[i].includes("[@")){
+            for(var j=0;j<script.length;j++){
+                if(j != i){
+                    if(script[i].toUpperCase() == script[j].toUpperCase()){writeError2("Duplicate Page name " + script[i],i,"critical")}
+                }
+            }
+        }
+    }
+}
 function refreshSim(){
     startParse();
 }

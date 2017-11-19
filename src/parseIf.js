@@ -86,7 +86,38 @@ function parseConquestAvailable(code){
         openIf=true;
     }
 }
+//Expects the conquest number as a variable but we are just gonna pass it based on a true or false in the options
+function parseConquesOwner(code){
+    if(code.includes("CONQUESTOWNER")){
+        scriptJS +="simConquestOwner == true";
+    }
+}
 
+function parseAffordGuard(code){
+    if(code.includes("AFFORDGUARD")){
+        scriptJS+="simGuardCost <= simGuildGold"
+    }
+}
+
+function parseAffordWall(code){
+    if(code.includes("AFFORDWALL")){
+        scriptJS+="simWallCost <= simGuildGold"
+    }
+}
+
+
+function parseAffordGate(code){
+    if(code.includes("AFFORDGATE")){
+        scriptJS+="simGateCost <= simGuildGold"
+    }
+}
+
+
+function parseAffordSiege(code){
+    if(code.includes("AFFORDSIEGE")){
+        scriptJS+="simSiegeCost <= simGuildGold"
+    }
+}
 function parseCheckGender(code){
     if(code.includes("CHECKGENDER")){
         checkOpenIf();

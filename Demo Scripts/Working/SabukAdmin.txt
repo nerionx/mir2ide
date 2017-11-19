@@ -1,0 +1,156 @@
+[@Main]
+#IF
+CONQUESTOWNER 1
+#ACT
+GOTO Main-1
+#ELSESAY
+How did you get in here, you are not a member of
+<$CONQUESTOWNER(1)>.
+
+GET OUT NOW!
+<Close/@Exit>
+
+[@Main-1]
+#SAY
+Nice to see you <$USERNAME>, what can I do for you today?
+
+<Heal Archers/@repairarchers>
+<Repair Walls/@repairwalls>
+<Open/Close the Gate/@openclosegates>
+
+<Get Sabuk Wall Buff/@getbuff>
+
+<Nothing/@exit>
+
+[@getbuff]
+GIVEBUFF Sabuk 3600 5,5,10 False
+LocalMessage "You have recieved the sabuk buff" Hint
+
+[@repairarchers]
+#SAY
+Which archer would you like to heal?
+
+;New box for every guard added
+<$CONQUESTGUARD(1,1)> - <Heal/@healguard1>
+<$CONQUESTGUARD(1,2)> - <Heal/@healguard2>
+<$CONQUESTGUARD(1,3)> - <Heal/@healguard3>
+<$CONQUESTGUARD(1,4)> - <Heal/@healguard4>
+
+<back/@Main-1>
+
+[@healguard1]
+#IF
+AFFORDGUARD 1 1
+#ACT
+CONQUESTGUARD 1 1
+#ELSESAY
+You do not have enough guild funds to heal this archer
+
+<back/@Main-1>
+
+[@healguard2]
+#IF
+AFFORDGUARD 1 1
+#ACT
+CONQUESTGUARD 1 2
+#ELSESAY
+You do not have enough guild funds to heal this archer
+
+<back/@Main-1>
+
+[@healguard3]
+#IF
+AFFORDGUARD 1 1
+#ACT
+CONQUESTGUARD 1 3
+#ELSESAY
+You do not have enough guild funds to heal this archer
+
+<back/@Main-1>
+
+[@healguard4]
+#IF
+AFFORDGUARD 1 1
+#ACT
+CONQUESTGUARD 1 4
+#ELSESAY
+You do not have enough guild funds to heal this archer
+
+<back/@Main-1>
+
+
+[@repairwalls]
+#SAY
+Which wall would you like to repair?
+<$CONQUESTWALL(1,1)> - <Repair/@repairwall1>
+<$CONQUESTWALL(1,2)> - <Repair/@repairwall2>
+<$CONQUESTWALL(1,3)> - <Repair/@repairwall3>
+<$CONQUESTGATE(1,1)> - <Repair/@repairgate1>
+
+<back/@Main-1>
+
+[@repairwall1]
+#IF
+AFFORDWALL 1 1
+#ACT
+CONQUESTWALL 1 1
+#ELSESAY
+You do not have enough guild funds to repair this wall
+
+<back/@Main-1>
+
+[@repairwall1]
+#IF
+AFFORDWALL 1 2
+#ACT
+CONQUESTWALL 1 2
+#ELSESAY
+You do not have enough guild funds to repair this wall
+
+<back/@Main-1>
+
+[@repairwall1]
+#IF
+AFFORDWALL 1 3
+#ACT
+CONQUESTWALL 1 3
+#ELSESAY
+You do not have enough guild funds to repair this wall
+
+<back/@Main-1>
+
+[@repairgate1]
+#IF
+AFFORDGATE 1 1
+#ACT
+CONQUESTGATE 1 1
+#ELSESAY
+You do not have enough guild funds to repair this gate
+
+<back/@Main-1>
+
+[@openclosegates]
+#SAY
+Would you like to open or close them?
+
+<Open them/@opengates>
+<Close them/@closegates>
+
+<Main Main/@Main-1>
+
+[@opengates]
+#ACT
+OPENGATE 1
+#SAY
+I have opened the gate
+
+<back/@Main-1>
+
+[@closegates]
+#ACT
+CLOSEGATE 1
+#SAY
+I have closed the gates
+
+<back/@Main-1>
+
