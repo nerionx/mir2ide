@@ -62,7 +62,7 @@ function getTodaysDate(){
     return date;
 }
 
-function startParse(){
+function startParse(run=true){
     codebox = editor.doc.getValue();
     scriptJS = ""
     script = [];
@@ -72,12 +72,12 @@ function startParse(){
     errors = false;
     writeError("No Errors");
     errors = false;
-    parseCode(codebox);
+    parseCode(codebox,run);
     console.log(scriptJS);
 
 }
 
-function parseCode(code){
+function parseCode(code, run=true){
     //General Sanity checks
     if(getLines(code)==0){return} //Check there is code
     if(!checkMain(code)){ return} //Check there is an entry point
@@ -127,7 +127,7 @@ function parseCode(code){
         }
     }
     //End the script and run it
-    if(errors==false){
+    if(errors==false && run==true){
         if(scriptMode == "SAY"){scriptJS+="';"} //Finish say command if it hasnt already ended
         if(scriptMode == "IF"){scriptJS+="1){}"; openIf=false; writeError("#IF started but not finished",currentLine)} //Finish IF commands (this should never be called on valid code so flag an errror)
         if(openIf==true){ //Did we do a comparison? is it still open... lets close it\\
