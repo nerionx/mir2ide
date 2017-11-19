@@ -27,17 +27,15 @@
       <div class="dropdown-menu">
           <a class="dropdown-item" href="#">New File</a>
           <div class="dropdown-divider"></div>          
-          <a class="dropdown-item" href="#" onclick="openFile()">Open<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
-          <a class="dropdown-item" href="#">Save</a>
-          <a class="dropdown-item" href="#">Save As</a>
-          <a class="dropdown-item" href="#">Close Window</a>
+          <a class="dropdown-item" href="#" onclick="openFile()">Open Local File<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
+          <a class="dropdown-item" href="#" download="npcscript.txt" id="saveas">Download Script</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Exit</a>
       </div>
       
         </li>
       <li class="nav-item">
-          <a class="nav-link" href="#simulatorModal" onclick="startParse()" data-target="#simulatorModal" data-toggle="modal"><span class="glyphicon glyphicon-play-circle"></span>Run</a>
+          <a class="nav-link" href="#simulatorModal" onclick="startParse()" data-target="#simulatorModal"><span class="glyphicon glyphicon-play-circle"></span>Run</a>
           </li>
           <li>
           <a class="nav-link" href="#"><span class="glyphicon glyphicon-play-circle"></span>Check</a>

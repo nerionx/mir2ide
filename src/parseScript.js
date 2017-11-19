@@ -87,6 +87,12 @@ function parseCode(code){
     for(var i=0;i<script.length;i++){
         //Parse the code and translate to javascript
         currentLine = i;
+        //Do single line sanity checks
+        //Check for double ]] [[ it happens alot
+        if(script[currentLine].includes("[[") || script[currentLine].includes("]]")){
+            writeError2("Syntax Error (Double brackets)",currentLine,"critical");
+        }
+
         //Check if the line is a comment, do nothing if it is
         if(!script[currentLine].includes(";")){
             if(script[currentLine].includes("#SAY")){parseSay(script[currentLine])}
@@ -114,6 +120,7 @@ function parseCode(code){
                 parseCheckGender(script[currentLine]);
                 parseRandom(script[currentLine]);
                 parseInGuild(script[currentLine]);
+                parseCheckGold(script[currentLine]);
             }
 
         }
@@ -126,9 +133,12 @@ function parseCode(code){
             openIf=false; 
             scriptJS +="}"
         }
+        $('#simulatorModal').modal("show");
         scriptJS +="} function npc_EXIT(){} npc_MAIN();"
         console.log(scriptJS);
         window.eval(scriptJS);
+    
+
     }
 }
     //Try and get the main function of code
@@ -145,7 +155,7 @@ function writeError(msg,line=0){
     var msg2 = msg;
     errors = true;
     if(!line==0){
-        msg2 += " on line number " + line;
+        msg2 += " on line number " + (line+1);
     }
     document.getElementById("script-console").innerHTML = msg2;
     }
@@ -158,8 +168,12 @@ function getLines(code){
 
 //Replacement for write error, allowing warnings aswelll as criticals which will stop parsing
 function writeError2(msg,line=0,type="critical"){
-    if(type=="critical"){errors=true} //Critical error dont run the parsed code as it will be incorrect
-    
+    var classes="simconsole";
+    if(type=="critical"){errors=true; classes="bg-danger text-white"} //Critical error dont run the parsed code as it will be incorrect
+    if(!line==0){
+        msg += " on line number " + (line+1);
+    }
+    document.getElementById("script-console").innerHTML = "<p width='100%' class='"+classes+"'>"+msg+"</p>";
 
 }
 

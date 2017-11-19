@@ -44,7 +44,25 @@ function parseDelayGoto(code){
 function parseGiveGold(code){
     if(code.includes("GIVEGOLD")){
         code = code.replace("GIVEGOLD ","");
-        simGold += parseInt(code);
+        try{
+        simGameGold += parseInt(code);
+        }
+        catch(err){
+            writeError2("Invalid gold amount, must be an integer e.g. GIVEGOLD 100",currentLine,"critical");
+        }
+    }
+}
+
+function parseTakeGold(code){
+    if(code.includes("TAKEGOLD")){
+        code = code.replace("TAKEGOLD ","");
+        try{
+            simGameGold -= parseInt(code);
+        }
+        catch(err){
+            writeError2("Invalid gold amount, must be an integer e.g. TAKEGOLD 100",currentLine,"critical");
+        }
+        
     }
 }
 
@@ -63,9 +81,9 @@ function parseGiveItem(code){
 
 //Move moves a value into a variable, because we are using eval we dont need to define an area to store these beforehand just append simVar_ to every variable name to avoid conflicts
 function parseMov(code){
-    if(code.includes("MOV")){
-        var newCode = code.replace("MOV",""); //Our string now only contains the variable name and the value
-        var a = newCode.indexOf(" ");
+    if(code.includes("MOV ")){
+        var newcode = code.replace("MOV ",""); //Our string now only contains the variable name and the value
+        var a = newcode.indexOf(" ");
         var mirvar = newcode.substr(0,a); //Only contains the variable name
         newcode = newcode.replace(mirvar+ " ",""); //Only contains the variable value
 

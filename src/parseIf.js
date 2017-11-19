@@ -53,10 +53,11 @@ function parseCheckGold(code){
             if(code.includes("!=")){ var operator = "!="; code = code.replace("!= ","")}
             if(code.includes(" > ")){ var operator = ">"; code = code.replace("> ","")}
             if(code.includes(" < ")){ var operator = "<"; code = code.replace("< ","")}
+            if(!operator){var operator=">="}; //Default to greater than or equals if no operator is specified
             //Get the test value
             var checkgold = code.replace("CHECKGOLD ","");
             openIf = true;
-            scriptJS +="simGold " + operator + " " + checkgold;
+            scriptJS +="simGameGold " + operator + " " + checkgold;
         }
     }
 
