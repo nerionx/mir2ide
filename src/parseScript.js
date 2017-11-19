@@ -110,6 +110,7 @@ function parseCode(code){
                 parseGoto(script[currentLine]);
                 parseGiveGold(script[currentLine]);
                 parseMov(script[currentLine]);
+                parseTakeGold(script[currentLine]);
             }
             if(scriptMode == "IF"){
                 parseCheckLevel(script[currentLine]);
