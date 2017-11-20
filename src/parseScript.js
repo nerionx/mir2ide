@@ -69,6 +69,7 @@ function getTodaysDate(){
 
 function startParse(run=true){
     codebox = editor.doc.getValue();
+    document.getElementById("simulatorEvents").innerHTML =""; //Reset the events
     scriptJS = ""
     script = [];
     scriptMode = "ACT";
@@ -117,6 +118,7 @@ function parseCode(code, run=true){
                 parseGiveGold(script[currentLine]);
                 parseMov(script[currentLine]);
                 parseTakeGold(script[currentLine]);
+                parseGiveItem(script[currentLine]);
             }
             if(scriptMode == "IF"){
                 parseCheckLevel(script[currentLine]);

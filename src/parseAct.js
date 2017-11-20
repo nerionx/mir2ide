@@ -68,15 +68,19 @@ function parseTakeGold(code){
 
 function parseGiveItem(code){
     if(code.includes("GIVEITEM")){
+        console.log(code);
         //Do a regex search for an integer
         var searchterms = /\d+/;
         var itemamount = parseInt(code.match(searchterms));
         if(!itemamount){itemamount = 1} //NPC script does not require an amount to be set, so default to one
-    }
+    
     //Remove the commmand and amount from the string, this should leave us with the item name
-    code = code.replace("GIVEITEM ");
-    var itemname = code = code.replace(itemamount);
-    AddItem(itemname, itemamount);
+    code = code.replace("GIVEITEM ","");
+    console.log(code);
+    var itemname = code.replace(itemamount,"");
+    console.log("itemname = "+itemname+" itemnumber " + itemamount);
+    scriptJS +="document.getElementById('simulatorEvents').innerHTML += '<br>Added " + itemamount + "x " + itemname + " to inventory';"; 
+    }
 }
 
 //Move moves a value into a variable, because we are using eval we dont need to define an area to store these beforehand just append simVar_ to every variable name to avoid conflicts
@@ -97,10 +101,4 @@ function parseCalc(code){
         code = code.replace("CALC ","");
 
     }
-}
-function AddItem(itemname, itemamount){
-    //Add items to the array
-    simItemName[simItemName.length] = itemname;
-    simItemAmount[simItemName.length] = itemamount;
-    refreshPage();
 }
