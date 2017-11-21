@@ -18,7 +18,7 @@
         <script src="src/builtinPages.js"></script>
     </head>
      <heading>
-        <div class="bg-info text-white text-center">The Legend of Mir 2 - Script Editor</div>
+        <div class="text-white text-center" style='background-color:black;'>The Legend of Mir 2 - Script Editor</div>
     </heading>
   <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -26,7 +26,7 @@
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#"><span class="fa fa-file"></span>&nbsp File</a>
       <div class="dropdown-menu">
-          <a class="dropdown-item" href="#"><span class="fa fa-file"></span>&nbsp New File</a>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#yousure" ><span class="fa fa-file"></span>&nbsp New File</a>
           <div class="dropdown-divider"></div>          
           <a class="dropdown-item" href="#" onclick="openFile()"><span class="fa fa-file-code-o"></span>&nbsp Open Local File<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
           <a class="dropdown-item" href="#" download="npcscript.txt" id="saveas"><span class="fa fa-floppy-o"></span>&nbsp Download Script</a>
@@ -53,8 +53,8 @@
   <div id="diveditor">
       <!--<span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:70%" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" id="editor" class="code-editor bg-dark text-white"></span>-->
       <textarea id="editor"></textarea>
-      <header style="border:1pt;border-style:solid;" class="bg-info text-white text-center">Console</header>
-      <span style="border:1pt; border-style:solid; display: inline-block; overflow: auto; width:100%; height:20%" id="script-console" class="code-console bg-dark text-white"></span>
+      <header style="background-color: black" class="text-white text-center">Console</header>
+      <span style="display: inline-block; overflow: auto; width:100%; height:20%" id="script-console" class="code-console bg-dark text-white"></span>
       <!--Code mirror-->
       <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"),{lineNumbers: true, mode: "mirscript"});
@@ -92,13 +92,29 @@
                 if you like it feel free to donate some gold ;)
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="refreshSim()">Refresh</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+                <button type="button" class="btn btn-default fa fa-close" data-dismiss="modal">&nbsp Close</button>
             </div>
         </div>
     </div>
 </div>
-
+<div id="yousure" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class ="modal-title">Lose unsaved changes</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to create a new file?<br>
+                You will lose all unsaved changes
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default fa fa-thumbs-up" onclick="clearScript()">&nbsp Yes</button>
+                <button type="button" class="btn btn-default fa fa-thumbs-down" data-dismiss="modal">&nbsp No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
   </body>
 </html>

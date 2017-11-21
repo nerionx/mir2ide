@@ -48,4 +48,8 @@ function writeSimulatorEvent(msg){
     document.getElementById("simulatorEvents").innerHTML +="<br>"+msg;
 }
 
+function clearScript(){
+    $('#yousure').modal('toggle');
+    editor.doc.setValue("");
+}
 
