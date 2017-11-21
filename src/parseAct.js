@@ -79,7 +79,7 @@ function parseGiveItem(code){
     console.log(code);
     var itemname = code.replace(itemamount,"");
     console.log("itemname = "+itemname+" itemnumber " + itemamount);
-    scriptJS +="document.getElementById('simulatorEvents').innerHTML += '<br>Added " + itemamount + "x " + itemname + " to inventory';"; 
+    scriptJS +="writeSimulatorEvent('Added "+ itemamount + "x " + itemname + " to inventory')"; 
     }
 }
 

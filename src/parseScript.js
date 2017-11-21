@@ -136,6 +136,13 @@ function parseCode(code, run=true){
                 parseAffordSiege(script[currentLine]);
                 parseAffordWall(script[currentLine]);
             }
+            if(scriptMode == "SHOP"){
+                //Nothign in here yet but we might write a handler later
+            }
+            if(scriptMode == "QUEST"){
+                //Nothign in here yet but we might write a handler later
+            }
+
 
         }
     }

@@ -43,4 +43,9 @@ function openFile(){
 
 }
 
+//Call this with running code to add an event to the simulator modal (E.g. Simulator took an item)
+function writeSimulatorEvent(msg){
+    document.getElementById("simulatorEvents").innerHTML +="<br>"+msg;
+}
+
 
