@@ -12,10 +12,10 @@ var player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","le
                 "armour":"BaseDress(f)","weapon":"WoodenSword","lring":"DragonRing","rring":"RubyRing","lbrace":"MonkBrace","rbrace":"SilverBrace",
                 "necklace":"SkillNecklace","belt":"ChainBelt","boots":"BlackBoots","helmet":"BronzeHelments","amulet":"Amulet",
                 "stone":"DCStone","torch":"EternalFlame","credit":"1000","itemcheck":"true","flagcheck":"true","questcheck":"true"}
-var map = {"x":"50","y":"100","name":"BichonProvince"}
-var npc = {"name":"Anna"}
-var guild ={"name":"Default Guild","wartime":"30","warfee":"10000","gold":"100000","conquestowner":"true","conquestguard":"Archer - Still Alive",
-            "conquestgate":"Gate - Still Alive","conquestwall":"Wall - Still Alive","conquestseige":"Siege - Still Alive",
+var map = {"x":"50","y":"100","mname":"BichonProvince"}
+var npc = {"nname":"Anna"}
+var guild ={"gname":"Default Guild","wartime":"30","warfee":"10000","ggold":"100000","conquestowner":"true","conquestguard":"Archer - Still Alive",
+            "conquestgate":"Gate - Still Alive","conquestwall":"Wall - Still Alive","conquestsiege":"Siege - Still Alive",
             "conquestgold":"1000","conquestrate":"10","conquestschedule":"Enemy Guild","conquestavailable":"true","guardcost":"1000",
             "gatecost":"1000","siegecost":"1000","wallcost":"1000"}
 var server ={"usercount":"10"}
@@ -124,7 +124,6 @@ function parseCode(code, run=true){
         }
         $('#simulatorModal').modal("show");
         scriptJS +="} npc_MAIN();"
-        console.log(scriptJS);
         window.eval(scriptJS);
     
 

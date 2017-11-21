@@ -111,27 +111,27 @@ function parseConquesOwner(code){
 
 function parseAffordGuard(code){
     if(code.includes("AFFORDGUARD")){
-        scriptJS+="guild.guardcost <= guild.gold"
+        scriptJS+="guild.guardcost <= guild.ggold"
     }
 }
 
 function parseAffordWall(code){
     if(code.includes("AFFORDWALL")){
-        scriptJS+="guild.wallcost <= guild.gold"
+        scriptJS+="guild.wallcost <= guild.ggold"
     }
 }
 
 
 function parseAffordGate(code){
     if(code.includes("AFFORDGATE")){
-        scriptJS+="guild.gatecost <= guild.gold"
+        scriptJS+="guild.gatecost <= guild.ggold"
     }
 }
 
 
 function parseAffordSiege(code){
     if(code.includes("AFFORDSIEGE")){
-        scriptJS+="guild.seigecost <= guild.gold"
+        scriptJS+="guild.seigecost <= guild.ggold"
     }
 }
 function parseCheckGender(code){
@@ -163,13 +163,13 @@ function parseInGuild(code){
             var guildName = code.replace("INGUILD ","");
             //Sanity check - did we actually recover a guildname? or was the space after inguild a mistake
             if(guildName !== ""){
-                scriptJS +="guild.name == '" + guildName+"'"; //Compare the 2 guild names
+                scriptJS +="guild.gname == '" + guildName+"'"; //Compare the 2 guild names
             }else{
                 //If we get here technically the syntax on INGUILD is incorrect (there is an extra space), however the game wont care so dont error
-                scriptJS+= "guild.name !== ''"; //We didnt find a guild name so just check if in any guild
+                scriptJS+= "guild.gname !== ''"; //We didnt find a guild name so just check if in any guild
             }
         }else{
-            scriptJS += "guild.name !== ''"; //Check if any guild
+            scriptJS += "guild.gname !== ''"; //Check if any guild
         }
     }
 }

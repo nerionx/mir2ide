@@ -29,9 +29,9 @@ function parseSay(code){
         console.log(code.includes("#SAY"));
         var newSpeech = code;
         //Replace variables with strings
-        newSpeech = newSpeech.replaceAll("<$NPCNAME>",npc.name);
+        newSpeech = newSpeech.replaceAll("<$NPCNAME>",npc.nname);
         newSpeech = newSpeech.replaceAll("<$USERNAME>",player.name);
-        newSpeech = newSpeech.replaceAll("<$MAP>",map.name);
+        newSpeech = newSpeech.replaceAll("<$MAP>",map.mname);
         newSpeech = newSpeech.replaceAll("<$X_COORD>",map.x);
         newSpeech = newSpeech.replaceAll("<$Y_COORD>",map.y);
         newSpeech = newSpeech.replaceAll("<$GAMEGOLD>",player.gold);
