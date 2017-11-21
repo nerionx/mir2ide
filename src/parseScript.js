@@ -47,7 +47,7 @@ function parseCode(code, run=true){
     //General Sanity checks
     if(getLines(code)==0){return} //Check there is code
     if(!checkMain(code)){ return} //Check there is an entry point
-    if(!code.includes("#")){writeError("No mode was ever specified, are you missing a #SAY,#ACT or #IF");return}
+    if(!code.includes("#")){writeError2("No mode was ever specified, are you missing a #SAY,#ACT or #IF",0,"critical");return}
     checkDupePages();
 
     //Loop through all the npc script and parse it line by line
@@ -117,7 +117,7 @@ function parseCode(code, run=true){
     //End the script and run it
     if(errors==false && run==true){
         if(scriptMode == "SAY"){scriptJS+="';"} //Finish say command if it hasnt already ended
-        if(scriptMode == "IF"){scriptJS+="1){}"; openIf=false; writeError("#IF started but not finished",currentLine)} //Finish IF commands (this should never be called on valid code so flag an errror)
+        if(scriptMode == "IF"){scriptJS+="1){}"; openIf=false; writeError2("#IF started but not finished",currentLine,"critical")} //Finish IF commands (this should never be called on valid code so flag an errror)
         if(openIf==true){ //Did we do a comparison? is it still open... lets close it\\
             openIf=false; 
             scriptJS +="}"
@@ -133,7 +133,7 @@ function parseCode(code, run=true){
 function checkMain(code){
     var code2 = code.toUpperCase();
     if(!code2.includes("[@MAIN]")){
-        writeError("Script does not have [@MAIN] Entry point")
+        writeError2("Script does not have [@MAIN] Entry point",0,"critical");
         return false;
     }
     return true;
