@@ -53,3 +53,6 @@ function clearScript(){
     editor.doc.setValue("");
 }
 
+function loadOptions(){
+    
+}

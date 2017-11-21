@@ -23,13 +23,13 @@ function parseCheckLevel(code){
         //Get the test value
         var checkLevel = code.replace("LEVEL ","");
         openIf = true;
-        scriptJS +="simLevel " + operator + " " + checkLevel;
+        scriptJS +="player.level " + operator + " " + checkLevel;
     }
 }
 function parseIsAdmin(code){
     if(code.includes("ISADMIN")){
         checkOpenIf();
-        scriptJS += "simIsAdmin == true";
+        scriptJS += "player.isadmin == true";
         openif = true;
     }
 }
@@ -38,7 +38,7 @@ function parseIsAdmin(code){
 function parseCheckItem(code){
     if(code.includes("CHECKITEM")){
         checkOpenIf();
-        scriptJS += "simItem == true";
+        scriptJS += "player.itemcheck == true";
         openIf = true;
     }
 }
@@ -57,7 +57,7 @@ function parseCheckGold(code){
             //Get the test value
             var checkgold = code.replace("CHECKGOLD ","");
             openIf = true;
-            scriptJS +="simGameGold " + operator + " " + checkgold;
+            scriptJS +="player.gold " + operator + " " + checkgold;
         }
     }
 
@@ -75,14 +75,14 @@ function parseCheckPKPoint(code){
             //Get the test value
             var checkpk = code.replace("CHECKPKPOINT ","");
             openIf=true;
-            scriptJS +="simPK " + operator + " " + checkpk;
+            scriptJS +="player.pk " + operator + " " + checkpk;
         }
     }
 //Expects a flag however we dont support them fully we just check if we are support to pass this check via a true false option in the sim
 function parseCheck(code){
     if(code.includes("CHECK ")){ //Space is required after check as there are multiple commands which include the string "CHECK"
         checkOpenIf();        
-        scriptJS += "simPassFlag == true";
+        scriptJS += "player.flagcheck == true";
         openIf=true;
     }
 }
@@ -90,7 +90,7 @@ function parseCheck(code){
 function parseCheckQuest(code){
     if(code.includes("CHECKQUEST")){ //Space is required after check as there are multiple commands which include the string "CHECK"
         checkOpenIf();        
-        scriptJS += "simQuestDone == true";
+        scriptJS += "player.questcheck == true";
         openIf=true;
     }
 }
@@ -98,47 +98,47 @@ function parseCheckQuest(code){
 function parseConquestAvailable(code){
     if(code.includes("CONQUESTAVAILABLE")){
         checkOpenIf();        
-        scriptJS += "simConquestAvailable == true";
+        scriptJS += "guild.conquestavailable == true";
         openIf=true;
     }
 }
 //Expects the conquest number as a variable but we are just gonna pass it based on a true or false in the options
 function parseConquesOwner(code){
     if(code.includes("CONQUESTOWNER")){
-        scriptJS +="simConquestOwner == true";
+        scriptJS +="guild.conquestowner == true";
     }
 }
 
 function parseAffordGuard(code){
     if(code.includes("AFFORDGUARD")){
-        scriptJS+="simGuardCost <= simGuildGold"
+        scriptJS+="guild.guardcost <= guild.gold"
     }
 }
 
 function parseAffordWall(code){
     if(code.includes("AFFORDWALL")){
-        scriptJS+="simWallCost <= simGuildGold"
+        scriptJS+="guild.wallcost <= guild.gold"
     }
 }
 
 
 function parseAffordGate(code){
     if(code.includes("AFFORDGATE")){
-        scriptJS+="simGateCost <= simGuildGold"
+        scriptJS+="guild.gatecost <= guild.gold"
     }
 }
 
 
 function parseAffordSiege(code){
     if(code.includes("AFFORDSIEGE")){
-        scriptJS+="simSiegeCost <= simGuildGold"
+        scriptJS+="guild.seigecost <= guild.gold"
     }
 }
 function parseCheckGender(code){
     if(code.includes("CHECKGENDER")){
         checkOpenIf();
         var checkvalue = code.replace("CHECKGENDER ","");
-        scriptJS += "simGender == "+checkvalue;
+        scriptJS += "player.gender == "+checkvalue;
     }
 }
 
@@ -163,13 +163,13 @@ function parseInGuild(code){
             var guildName = code.replace("INGUILD ","");
             //Sanity check - did we actually recover a guildname? or was the space after inguild a mistake
             if(guildName !== ""){
-                scriptJS +="simGuildName == '" + guildName+"'"; //Compare the 2 guild names
+                scriptJS +="guild.name == '" + guildName+"'"; //Compare the 2 guild names
             }else{
                 //If we get here technically the syntax on INGUILD is incorrect (there is an extra space), however the game wont care so dont error
-                scriptJS+= "simGuildName !== ''"; //We didnt find a guild name so just check if in any guild
+                scriptJS+= "guild.name !== ''"; //We didnt find a guild name so just check if in any guild
             }
         }else{
-            scriptJS += "simGuildName !== ''"; //Check if any guild
+            scriptJS += "guild.name !== ''"; //Check if any guild
         }
     }
 }

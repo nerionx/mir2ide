@@ -45,7 +45,7 @@ function parseGiveGold(code){
     if(code.includes("GIVEGOLD")){
         code = code.replace("GIVEGOLD ","");
         try{
-        simGameGold += parseInt(code);
+        player.gold += parseInt(code);
         }
         catch(err){
             writeError2("Invalid gold amount, must be an integer e.g. GIVEGOLD 100",currentLine,"critical");
@@ -57,7 +57,7 @@ function parseTakeGold(code){
     if(code.includes("TAKEGOLD")){
         code = code.replace("TAKEGOLD ","");
         try{
-            simGameGold -= parseInt(code);
+            player.gold -= parseInt(code);
         }
         catch(err){
             writeError2("Invalid gold amount, must be an integer e.g. TAKEGOLD 100",currentLine,"critical");

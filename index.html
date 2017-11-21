@@ -43,7 +43,10 @@
           </li>
           </ul>
           <ul class = "nav navbar-nav navbar-right">
-          <li>
+            <li>
+                <a class="nav-link" data-target="#options" data-toggle="modal" href="#"onclick = ""><span class="fa fa-cog"></span>&nbsp Options</a>
+              </li>
+            <li>
             <a class="nav-link" data-target="#aboutModal" data-toggle="modal" href="#"onclick = ""><span class="fa fa-user"></span>&nbsp About</a>
           </li>
       </ul>
@@ -111,6 +114,60 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default fa fa-thumbs-up" onclick="clearScript()">&nbsp Yes</button>
                 <button type="button" class="btn btn-default fa fa-thumbs-down" data-dismiss="modal">&nbsp No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="options" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class ="modal-title">Options</h4>
+            </div>
+            <div class="modal-body" style="overflow: auto; height:50%;">
+                <table>
+                    <tr><th colspan="3" style="color: white; background-color: grey">Player Options</th></tr>
+                    <tr><td>Username: </td><td><input type="text" id="PlayerName" onchange="saveOptions(this)"></td><td>The Characters Name</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="Level" onchange="saveOptions(this)"></td><td>The Characters Level</td></tr>
+                    <tr><td>Class: </td><td><input type="text" id="Class" onchange="saveOptions(this)"></td><td>The Characters Class</td></tr>
+                    <tr><td>Gender: </td><td><input type="text" id="Gender" onchange="saveOptions(this)"></td><td>The Characters Gender</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="GameGold" onchange="saveOptions(this)"></td><td>The Characters Gold</td></tr>
+                    <tr><td>Pearls: </td><td><input type="number" id="Pearls" onchange="saveOptions(this)"></td><td>The Characters Pearls</td></tr>
+                    <tr><td>Credits: </td><td><input type="number" id="Credit" onchange="saveOptions(this)"></td><td>The Characters Credits</td></tr>
+                    <tr><td>Armour: </td><td><input type="text" id="Armour" onchange="saveOptions(this)"></td><td>The Characters Armour</td></tr>
+                    <tr><td>Helm: </td><td><input type="text" id="Helmet" onchange="saveOptions(this)"></td><td>The Characters Helm</td></tr>
+                    <tr><td>Weapon: </td><td><input type="text" id="Weapon" onchange="saveOptions(this)"></td><td>The Characters Weapon</td></tr>
+                    <tr><td>Amulet: </td><td><input type="text" id="Necklace" onchange="saveOptions(this)"></td><td>The Characters Necklace</td></tr>
+                    <tr><td>Left Brace: </td><td><input type="text" id="LBracelet" onchange="saveOptions(this)"></td><td>The Characters Left Brace</td></tr>
+                    <tr><td>Right Brace: </td><td><input type="text" id="RBracelet" onchange="saveOptions(this)"></td><td>The Characters Level</td></tr>
+                    <tr><td>Left Ring: </td><td><input type="text" id="LRing" onchange="saveOptions(this)"></td><td>The Characters Left Ring</td></tr>
+                    <tr><td>Right Ring: </td><td><input type="text" id="RRing" onchange="saveOptions(this)"></td><td>The Characters Right Ring</td></tr>
+                    <tr><td>Torch: </td><td><input type="text" id="Torch" onchange="saveOptions(this)"></td><td>The Characters Torch</td></tr>
+                    <tr><td>Amulet: </td><td><input type="text" id="Amulet" onchange="saveOptions(this)"></td><td>The Characters Amulet</td></tr>
+                    <tr><td>Stone: </td><td><input type="text" id="Stone" onchange="saveOptions(this)"></td><td>The Characters Stone</td></tr>
+                    <tr><th style="color: white;background-color:grey"colspan="3">Quest Options</th></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The Characters level</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The haracters level</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The characters level</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The characters level</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The characters level</td></tr>
+                    <tr><td>Level: </td><td><input type="number" id="playerName"></td><td>The characters level</td></tr>
+                    <tr><th style="color: white;background-color:grey"colspan="3">NPC Options</th></tr>
+                    <tr><td>NPC Name: </td><td><input type="text" id="NPCName" onchange="saveOptions(this)"></td><td>The NPC's Name</td></tr>                    
+                    <tr><th style="color: white;background-color:grey"colspan="3">Map Options</th></tr>
+                    <tr><td>Map Name: </td><td><input type="text" id="playerMapName" onchange="saveOptions(this)"></td><td>The Map Name</td></tr>
+                    <tr><td>X Position: </td><td><input type="number" id="X"></td><td>The X Coords</td></tr>
+                    <tr><td>Y Position: </td><td><input type="number" id="Y"></td><td>The Y Coords</td></tr>
+                    <tr><th style="color: white;background-color:grey"colspan="3">Pet Options</th></tr>
+                    <tr><td>Pets: </td><td><input type="number" id="PetCount" onchange="saveOptions(this)"></td><td>The Amount of Pets</td></tr>
+                    <tr><td>Pet Level: </td><td><input type="number" id="PetLevel" onchange="saveOptions(this)"></td><td>The Pets Level</td></tr>
+                </table>
+                <script>function saveOptions(e){var id = e.id;var tempscript="sim"+id+" = '" +e.value+"';";window.eval(tempscript); window.localStorage.setItem(e.id,e.value);}</script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default fa fa-thumbs-up" onclick="saveOptions">&nbsp Save</button>
+                <button type="button" class="btn btn-default fa fa-thumbs-down" data-dismiss="modal">&nbsp Cancel</button>
             </div>
         </div>
     </div>

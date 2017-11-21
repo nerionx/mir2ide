@@ -7,60 +7,19 @@ var currentLine = 0;
 var hadWriteError=false;
 
 //Simulator variables
-simGameGold = 10000; //How much gold the player is holding
-simPlayerName = "Player"; //The name of the current player
-simNPCName = "Anna"; //The name of the NPC
-simX = "50"; //The players current X position
-simY = "100"; //The players current Y position
-simLevel = "22"; //The players current level
-simGender = "male";
-simClass = "Taoist"; //the players current class
-simGuildName = "Default Guild"; //The players current guild - if blank assume no guild
-simUserCount = "15"; //The current server user count
+var player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","level":"22","petcount":"5","petlevel":"7",
+                "pearls":"1000","isadmin":"false","pk":"1","parcelamount":"3","hp":"100","mp":"100","maxhp":"100","maxmp":"100",
+                "armour":"BaseDress(f)","weapon":"WoodenSword","lring":"DragonRing","rring":"RubyRing","lbrace":"MonkBrace","rbrace":"SilverBrace",
+                "necklace":"SkillNecklace","belt":"ChainBelt","boots":"BlackBoots","helmet":"BronzeHelments","amulet":"Amulet",
+                "stone":"DCStone","torch":"EternalFlame","credit":"1000","itemcheck":"true","flagcheck":"true","questcheck":"true"}
+var map = {"x":"50","y":"100","name":"BichonProvince"}
+var npc = {"name":"Anna"}
+var guild ={"name":"Default Guild","wartime":"30","warfee":"10000","gold":"100000","conquestowner":"true","conquestguard":"Archer - Still Alive",
+            "conquestgate":"Gate - Still Alive","conquestwall":"Wall - Still Alive","conquestseige":"Siege - Still Alive",
+            "conquestgold":"1000","conquestrate":"10","conquestschedule":"Enemy Guild","conquestavailable":"true","guardcost":"1000",
+            "gatecost":"1000","siegecost":"1000","wallcost":"1000"}
+var server ={"usercount":"10"}
 simDate = getTodaysDate();
-simIsAdmin = false; //is the player an admin
-simItemName = [];
-simItemAmount = []; //This should be an inventory object but meh //hack
-simPK = "1"; //How many PK points the player has
-simGuildWarTime = "30" ; //How many minutes the guild war has left
-simGuildWarFee = "10000" ; //How much a guild war costs
-simParcelAmount = "3"; //How many parcels the player has waiting to be collected
-simHP = 100; //How much hp the player has
-simMP = 100; //How much mp the player has
-simMaxHP = 100; //What the players max hp is
-simMaxMP = 100; //what the players max mp is
-simArmour = "BaseDress(f)"; //The name of the armour the player is wearing
-simWeapon = "WoodenSword"; //The name of the weapon the player is currently holding
-simLRing = "DragonRing"; //The name of the left ring
-simRRing = "RubyRing"; //The name of the right ring
-simLBracelet = "MonkBrace"; //The name of the left bracelet
-simRBracelet = "SilverBracelet"; //The name of the right bracelet
-simNecklace = "SkillNecklace"; //the name of the necklace
-simBelt = "ChainBelt"; //The name of the belt
-simBoots = "BlackBoots";
-simHelmet = "BronzeHelmet";
-simAmulet = "Amulet"; //The name of the amulet (not count)
-simStone = "DCStone";
-simTorch = "EternalFlame"; //Name of torch not dura
-simCredit = "1000"; //Amount of gameshop credit
-simConquestOwner = false //should I conquest war owner checks
-simConquestGuard = "Archer - Still Alive";
-simConquestGate = "Gate - Still Alive";
-simConquestWall = "Wall - Still Alive";
-simConquestSeige = "Seige - Still Alive";
-simConquestGold = 1000; //How much gold in conquest storage
-simConquestRate = 10; //Intrest rate on conquest npcs
-simConquestSchedule = "BadAssGuild"; //Do any guild has a war sheduled
-simMapName = "BichonProvince";
-simItem = true; //should we pass item checks
-simConquestAvailable = true;
-simGuildGold = 1000000; //How much gold the guild has
-simGuardCost = 1000;
-simGateCost = 1000;
-simSiegeCost = 1000;
-simWallCost = 1000;
-simPassFlag = true; //Will it pass flag checks
-simQuestDone = true; //Are the quest complete?
 
 //Used for <$DATE> in #SAY
 function getTodaysDate(){

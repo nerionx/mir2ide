@@ -29,38 +29,38 @@ function parseSay(code){
         console.log(code.includes("#SAY"));
         var newSpeech = code;
         //Replace variables with strings
-        newSpeech = newSpeech.replaceAll("<$NPCNAME>",simNPCName);
-        newSpeech = newSpeech.replaceAll("<$USERNAME>",simPlayerName);
-        newSpeech = newSpeech.replaceAll("<$MAP>",simMapName);
-        newSpeech = newSpeech.replaceAll("<$X_COORD>",simX);
-        newSpeech = newSpeech.replaceAll("<$Y_COORD>",simY);
-        newSpeech = newSpeech.replaceAll("<$GAMEGOLD>",simGameGold);
-        newSpeech = newSpeech.replaceAll("<$LEVEL>",simLevel);
-        newSpeech = newSpeech.replaceAll("<$CLASS>",simClass);
+        newSpeech = newSpeech.replaceAll("<$NPCNAME>",npc.name);
+        newSpeech = newSpeech.replaceAll("<$USERNAME>",player.name);
+        newSpeech = newSpeech.replaceAll("<$MAP>",map.name);
+        newSpeech = newSpeech.replaceAll("<$X_COORD>",map.x);
+        newSpeech = newSpeech.replaceAll("<$Y_COORD>",map.y);
+        newSpeech = newSpeech.replaceAll("<$GAMEGOLD>",player.gold);
+        newSpeech = newSpeech.replaceAll("<$LEVEL>",player.level);
+        newSpeech = newSpeech.replaceAll("<$CLASS>",player.class);
         newSpeech = newSpeech.replaceAll("<$DATE>",simDate);
-        newSpeech = newSpeech.replaceAll("<$USERCOUNT>",simUserCount);
-        newSpeech = newSpeech.replaceAll("<$PKPOINT>",simPK);
-        newSpeech = newSpeech.replaceAll("<$GUILDWARTIME>",simGuildWarTime);
-        newSpeech = newSpeech.replaceAll("<$GUILDWARFEE>",simGuildWarFee);
-        newSpeech = newSpeech.replaceAll("<$PARCELAMOUNT>",simParcelAmount);
-        newSpeech = newSpeech.replaceAll("<$HP>",simHP);
-        newSpeech = newSpeech.replaceAll("<$MAXHP>",simMaxHP);
-        newSpeech = newSpeech.replaceAll("<$MP>",simMP);
-        newSpeech = newSpeech.replaceAll("<$MAXMP>",simMaxMP);
-        newSpeech = newSpeech.replaceAll("<$ARMOUR>",simArmour);
-        newSpeech = newSpeech.replaceAll("<$WEAPON>",simWeapon);
-        newSpeech = newSpeech.replaceAll("<$RING_L>",simLRing);
-        newSpeech = newSpeech.replaceAll("<$RING_R>",simRRing);
-        newSpeech = newSpeech.replaceAll("<$BRACELET_L>",simLBracelet);
-        newSpeech = newSpeech.replaceAll("<$BRACELET_R>",simRBracelet);
-        newSpeech = newSpeech.replaceAll("<$NECKLACE>",simNecklace);
-        newSpeech = newSpeech.replaceAll("<$BELT>",simBelt);
-        newSpeech = newSpeech.replaceAll("<$BOOTS>",simBoots);
-        newSpeech = newSpeech.replaceAll("<$HELMET>",simHelmet);
-        newSpeech = newSpeech.replaceAll("<$AMULET>",simAmulet);
-        newSpeech = newSpeech.replaceAll("<$STONE>",simStone);
-        newSpeech = newSpeech.replaceAll("<$TORCH>",simTorch);
-        newSpeech = newSpeech.replaceAll("<$CREDIT>",simCredit);
+        newSpeech = newSpeech.replaceAll("<$USERCOUNT>",server.usercount);
+        newSpeech = newSpeech.replaceAll("<$PKPOINT>",player.pk);
+        newSpeech = newSpeech.replaceAll("<$GUILDWARTIME>",guild.wartime);
+        newSpeech = newSpeech.replaceAll("<$GUILDWARFEE>",guild.warfee);
+        newSpeech = newSpeech.replaceAll("<$PARCELAMOUNT>",player.parcelamount);
+        newSpeech = newSpeech.replaceAll("<$HP>",player.hp);
+        newSpeech = newSpeech.replaceAll("<$MAXHP>",player.maxhp);
+        newSpeech = newSpeech.replaceAll("<$MP>",player.mp);
+        newSpeech = newSpeech.replaceAll("<$MAXMP>",player.maxmp);
+        newSpeech = newSpeech.replaceAll("<$ARMOUR>",player.armour);
+        newSpeech = newSpeech.replaceAll("<$WEAPON>",player.weapon);
+        newSpeech = newSpeech.replaceAll("<$RING_L>",player.lring);
+        newSpeech = newSpeech.replaceAll("<$RING_R>",player.rring);
+        newSpeech = newSpeech.replaceAll("<$BRACELET_L>",player.lbrace);
+        newSpeech = newSpeech.replaceAll("<$BRACELET_R>",player.rbrace);
+        newSpeech = newSpeech.replaceAll("<$NECKLACE>",player.necklace);
+        newSpeech = newSpeech.replaceAll("<$BELT>",player.belt);
+        newSpeech = newSpeech.replaceAll("<$BOOTS>",player.boots);
+        newSpeech = newSpeech.replaceAll("<$HELMET>",player.helmet);
+        newSpeech = newSpeech.replaceAll("<$AMULET>",player.amulet);
+        newSpeech = newSpeech.replaceAll("<$STONE>",player.stone);
+        newSpeech = newSpeech.replaceAll("<$TORCH>",player.torch);
+        newSpeech = newSpeech.replaceAll("<$CREDIT>",player.credit);
         newSpeech = newSpeech.replaceAll("'","&quot"); //Quotes will break the js
         newSpeech = newSpeech.replaceAll('"',"&quot"); //Quotes will break the js
         newSpeech = newSpeech.replaceAll(" ","&nbsp;"); //Retain the spaces
@@ -69,14 +69,14 @@ function parseSay(code){
     var conqueststring;
     var newdata;
     for(var j=0;j<8;j++){
-        if(j==0){conqueststring="<$CONQUESTOWN";newdata = simConquestOwner}
-        if(j==1){conqueststring="<$CONQUESTGUARD";newdata = simConquestGuard}
-        if(j==2){conqueststring="<$CONQUESTGATE"; newdata = simConquestGate}
-        if(j==3){conqueststring="<$CONQUESTWALL";newdata = simConquestWall}
-        if(j==4){conqueststring="<$CONQUESTSEIGE";newdata = simConquestSeige}
-        if(j==5){conqueststring="<$CONQUESTGOLD";newdata = simConquestGold}
-        if(j==6){conqueststring="<$CONQUESTRATE";newdata =simConquestRate}
-        if(j==7){conqueststring="<$CONQUESTSCHEDULE";newdata = simConquestSchedule}
+        if(j==0){conqueststring="<$CONQUESTOWN";newdata = guild.conquestowner}
+        if(j==1){conqueststring="<$CONQUESTGUARD";newdata = guild.conquestguard}
+        if(j==2){conqueststring="<$CONQUESTGATE"; newdata = guild.conquestgate}
+        if(j==3){conqueststring="<$CONQUESTWALL";newdata = guild.conquestwall}
+        if(j==4){conqueststring="<$CONQUESTSEIGE";newdata = guild.conquestsiege}
+        if(j==5){conqueststring="<$CONQUESTGOLD";newdata = guild.conquestgold}
+        if(j==6){conqueststring="<$CONQUESTRATE";newdata =guild.conquestrate}
+        if(j==7){conqueststring="<$CONQUESTSCHEDULE";newdata = guild.conquestschedule}
         var n = newSpeech.indexOf(conqueststring);
         if(n>-1){
             //found a conquest tag, find the end of it so we can remove it
