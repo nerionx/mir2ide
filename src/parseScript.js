@@ -108,7 +108,9 @@ function parseCode(code, run=true){
             if(script[currentLine].includes("#ELSEACT")){parseElseAct(script[currentLine])}
             if(script[currentLine].includes("#ELSESAY")){parseElseSay(script[currentLine])}
             if(script[currentLine].includes("[@")){parsePage(script[currentLine])} //Is a new page
-        
+            if(script[currentLine].toUpperCase().includes('[QUESTS]')){parseQuests(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes('[TRADE]')){parseQuests(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes('[TYPES]')){parseQuests(script[currentLine])}
             //Parse the say commands
             if(scriptMode == "SAY"){
                 parseSpeech(script[currentLine]); //We are in say mode, treat every line as text
@@ -136,13 +138,15 @@ function parseCode(code, run=true){
                 parseAffordSiege(script[currentLine]);
                 parseAffordWall(script[currentLine]);
             }
-            if(scriptMode == "SHOP"){
+            if(scriptMode == "TRADE"){
                 //Nothign in here yet but we might write a handler later
             }
             if(scriptMode == "QUEST"){
                 //Nothign in here yet but we might write a handler later
             }
-
+            if(scriptMode == "TYPES"){
+                //Nothign in here yet but we might write a handler later
+            }
 
         }
     }
@@ -271,4 +275,22 @@ function checkDupePages(){
 }
 function refreshSim(){
     startParse();
+}
+
+function parseQuests(){
+    if(scriptMode=="SAY"){scriptJS+="';"}
+    if(scriptMode=="IF"){scriptJS +='}'}
+    scriptMode="QUEST";
+}
+
+function parseTypes(){
+    if(scriptMode=="SAY"){scriptJS+="';"}
+    if(scriptMode=="IF"){scriptJS +='}'}
+    scriptMode="TYPES";
+}
+
+function parseTrade(){
+    if(scriptMode=="SAY"){scriptJS+="';"}
+    if(scriptMode=="IF"){scriptJS +='}'}
+    scriptMode="TRADE";
 }
