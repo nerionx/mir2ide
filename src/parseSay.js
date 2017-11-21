@@ -141,13 +141,20 @@ function parseSay(code){
         }
     }
 
-    
-
+    //Test for invalid buttons
+    var buttonTest = newSpeech.replaceAll("<span","");
+    buttonTest = buttonTest.replaceAll("</span>","");
+    console.log("button text = "+ buttonTest);
+    if(buttonTest.includes("<") && buttonTest.includes(">")){
+        writeError2("Invalid page links (possibly missing @",currentLine,"critical");
+    }
 
     //Test for invalid variables (All should of been replaced by now so look for <$ if it exists its invalid)
     if(newSpeech.includes("<$")){
         writeError("Invalid variable tag in #SAY mode ",currentLine+1);
     }
+
+    
 
     //Add strings to speech array
         scriptJS += newSpeech +"<br>";
