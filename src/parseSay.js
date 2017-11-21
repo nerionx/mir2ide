@@ -146,7 +146,7 @@ function parseSay(code){
     buttonTest = buttonTest.replaceAll("</span>","");
     console.log("button text = "+ buttonTest);
     if(buttonTest.includes("<") && buttonTest.includes(">")){
-        writeError2("Invalid page links (possibly missing @",currentLine,"critical");
+        writeError2("Invalid page links (possibly missing @)",currentLine,"critical");
     }
 
     //Test for invalid variables (All should of been replaced by now so look for <$ if it exists its invalid)

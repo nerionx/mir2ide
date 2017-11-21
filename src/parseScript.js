@@ -71,14 +71,13 @@ function getTodaysDate(){
 
 function startParse(run=true){
     codebox = editor.doc.getValue();
+    document.getElementById("script-console").innerHTML = ""; //Reset the console
     document.getElementById("simulatorEvents").innerHTML =""; //Reset the events
     scriptJS = ""
     script = [];
     scriptMode = "ACT";
     currentLine = 0;
     inPage = false;
-    errors = false;
-    writeError("No Errors");
     errors = false;
     parseCode(codebox,run);
     console.log(scriptJS);
@@ -203,7 +202,7 @@ function writeError2(msg,line=0,type="critical"){
     if(!line==0){
         msg += " on line number " + (line+1);
     }
-    document.getElementById("script-console").innerHTML = "<p width='100%' class='"+classes+"'>"+msg+"</p>";
+    document.getElementById("script-console").innerHTML += "<span style='display: block; width: 100%;' class='"+classes+"'>"+msg+"</span>";
 
 }
 
