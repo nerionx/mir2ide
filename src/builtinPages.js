@@ -88,3 +88,9 @@ function npc_REFINECOLLECT(){
 function npc_REFINECHECK(){
     writeSimulatorEvent("Checked Recent Refine");
 }
+
+function npc_EXIT(){
+    document.getElementById("simulatorSpeech").innerHTML = "";
+    writeSimulatorEvent("Script has Ended");
+
+}

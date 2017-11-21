@@ -86,7 +86,7 @@ function parseGiveItem(code){
 //Move moves a value into a variable, because we are using eval we dont need to define an area to store these beforehand just append simVar_ to every variable name to avoid conflicts
 function parseMov(code){
     if(code.includes("MOV ")){
-        var newcode = code.replace("MOV ",""); //Our string now only contains the variable name and the value
+        var newcode = code.replaceAll("MOV ",""); //Our string now only contains the variable name and the value
         var a = newcode.indexOf(" ");
         var mirvar = newcode.substr(0,a); //Only contains the variable name
         newcode = newcode.replace(mirvar+ " ",""); //Only contains the variable value
@@ -98,7 +98,18 @@ function parseMov(code){
 //Adds variables and values together
 function parseCalc(code){
     if(code.includes("CALC")){
-        code = code.replace("CALC ","");
+        code = code.replaceAll("CALC ","");
 
     }
 }
+
+//NPC is going to teleport the player, we dont actually move the player but we need to show it in the events log, Also parses instancemove
+function parseMove(code){
+    if(code.toUpperCase().includes("MOVE") || code.toUpperCase().includes("INSTANCEMOVE")){
+        code=code.replaceAll("instancemove ","");
+        code=code.replaceAll("move ","");
+        scriptJS+="writeSimulatorEvent('Moved player to: "+ code + "');"
+    }
+}
+
+

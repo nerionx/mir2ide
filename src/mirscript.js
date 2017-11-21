@@ -102,12 +102,26 @@ codemirror_define_grammar_mode("mirscript", {
                               "BREAKTIMERECALL","MONCLEAR","GROUPRECALL","GROUPTELEPORT","DELAYGOTO","MOV","CALC","GIVEBUFF","REMOVEBUFF","ADDTOGUILD","REMOVEFROMGUILD",
                               "REFRESHEFFECTS","CHANGEHAIR","CANGAINEXP","COMPOSEMAIL","ADDMAILITEM","ADDMAILGOLD","SENDMAIL","GROUPGOTO","ENTERMAP","GIVEPEARLS","TAKEPEARLS","MAKEWEDDINGRING",
                               "FORCEDIVORCE","LOADVALUE","SAVEVALUE","GIVECREDIT","TAKECREDIT","CONQUESTGUARD","CONQUESTGATE","CONQUESTWALL","CONQUESTSEIGE","TAKECONQUESTGOLD","SETCONQUESTRATE",
-                              "STARTCONQUEST","SCHEDULECONQUEST","OPENGATE","CLOSEGATE"
+                              "STARTCONQUEST","SCHEDULECONQUEST","OPENGATE","CLOSEGATE",
+                              "isadmin", "level", "checkitem", 
+                              "checkgold", "checkgender", "checkclass", "dayofweek", "hour","min","checknamelist","checkpkpoint","checkrange",
+                              "check", "checkhum", "checkmon", "checkexactmon", "random","groupleader","groupcount","checkpet","petlevel","petcount","checkcalc","inguild", 
+                              "checkmap", "checkquest", "checkrelationship", "checkweddingring", "checkcredit","hasbagspace","isnewhuman","checkconquest","affordguard","affordgate", 
+                              "affordwall", "affordsiege","conquestavailable","conquestowner","checkpermission","move","instancemove","givegold","takegold","giveitem","takeitem","giveexp",
+                              "givepet","removepet","clearpets","addnamelist","delnamelist","clearnamelist","givehp","givemp","changelevel","setpkpoint","reducepkpoint","increasepkpoint",
+                              "changegender","localmessage","globalmessage","goto","giveskill","removeskill","set","param1","param2","param3","mongen","timerecall","timerecallgroup",
+                              "breaktimerecall","monclear","grouprecall","groupteleport","delaygoto","mov","calc","givebuff","removebuff","addtoguild","removefromguild",
+                              "refresheffects","changehair","cangainexp","composemail","addmailitem","addmailgold","sendmail","groupgoto","entermap","givepearls","takepearls","makeweddingring",
+                              "forcedivorce","loadvalue","savevalue","givecredit","takecredit","conquestguard","conquestgate","conquestwall","conquestseige","takeconquestgold","setconquestrate",
+                              "startconquest","scheduleconquest","opengate","closegate"
                               ]}
 ,"tag"                          :{"autocomplete":true,"tokens":[
                               "<$NPCNAME>","<$USERNAME>","<$MAP>","<$X_COORD>","<$Y_COORD>","<$GAMEGOLD>","<$LEVEL>","<$CLASS>","<$DATE>","<$USERCOUNT>","<$PKPOINT>",
                               "<$GUILDWARTIME>","<$GUILDWARFEE>","<$PARCELAMOUNT>","<$HP>","<$MAXHP>","<$MP>","<$MAXMP>","<$ARMOUR>","<$WEAPON>","<$RING_L>","<$RING_R>",
-                              "<$BRACELET_L>","<$BRACELET_R>","<$NECKLACE>","<$BELT>","<$BOOTS>","<$HELMET>","<$AMULET>","<$STONE>","<$TORCH>","<$CREDIT>"
+                              "<$BRACELET_L>","<$BRACELET_R>","<$NECKLACE>","<$BELT>","<$BOOTS>","<$HELMET>","<$AMULET>","<$STONE>","<$TORCH>","<$CREDIT>",
+                              "<$npcname>","<$username>","<$map>","<$x_coord>","<$y_coord>","<$gamegold>","<$level>","<$class>","<$date>","<$usercount>","<$pkpoint>",
+                              "<$guildwartime>","<$guildwarfee>","<$parcelamount>","<$hp>","<$maxhp>","<$mp>","<$maxmp>","<$armour>","<$weapon>","<$ring_l>","<$ring_r>",
+                              "<$bracelet_l>","<$bracelet_r>","<$necklace>","<$belt>","<$boots>","<$helmet>","<$amulet>","<$stone>","<$torch>","<$credit>"
                               ]}                                 
 
 },

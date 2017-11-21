@@ -59,6 +59,8 @@ simGuardCost = 1000;
 simGateCost = 1000;
 simSiegeCost = 1000;
 simWallCost = 1000;
+simPassFlag = true; //Will it pass flag checks
+simQuestDone = true; //Are the quest complete?
 
 //Used for <$DATE> in #SAY
 function getTodaysDate(){
@@ -102,12 +104,12 @@ function parseCode(code, run=true){
 
         //Check if the line is a comment, do nothing if it is
         if(!script[currentLine].includes(";")){
-            if(script[currentLine].includes("#SAY")){parseSay(script[currentLine])}
-            if(script[currentLine].includes("#IF")){parseIf(script[currentLine])}
-            if(script[currentLine].includes("#ACT")){parseAct(script[currentLine])}
-            if(script[currentLine].includes("#ELSEACT")){parseElseAct(script[currentLine])}
-            if(script[currentLine].includes("#ELSESAY")){parseElseSay(script[currentLine])}
-            if(script[currentLine].includes("[@")){parsePage(script[currentLine])} //Is a new page
+            if(script[currentLine].toUpperCase().includes("#SAY")){parseSay(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes("#IF")){parseIf(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes("#ACT")){parseAct(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes("#ELSEACT")){parseElseAct(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes("#ELSESAY")){parseElseSay(script[currentLine])}
+            if(script[currentLine].toUpperCase().includes("[@")){parsePage(script[currentLine])} //Is a new page
             if(script[currentLine].toUpperCase().includes('[QUESTS]')){parseQuests(script[currentLine])}
             if(script[currentLine].toUpperCase().includes('[TRADE]')){parseQuests(script[currentLine])}
             if(script[currentLine].toUpperCase().includes('[TYPES]')){parseQuests(script[currentLine])}
@@ -116,27 +118,30 @@ function parseCode(code, run=true){
                 parseSpeech(script[currentLine]); //We are in say mode, treat every line as text
             }
             if(scriptMode=="ACT"){
-                parseGoto(script[currentLine]);
-                parseGiveGold(script[currentLine]);
-                parseMov(script[currentLine]);
-                parseTakeGold(script[currentLine]);
-                parseGiveItem(script[currentLine]);
+                parseGoto(script[currentLine].toUpperCase());
+                parseGiveGold(script[currentLine].toUpperCase());
+                parseMov(script[currentLine].toUpperCase());
+                parseTakeGold(script[currentLine].toUpperCase());
+                parseGiveItem(script[currentLine]); //Has player string in it, dont convert to uppercase yet
+                parseMove(script[currentLine]); //Ditto
             }
             if(scriptMode == "IF"){
-                parseCheckLevel(script[currentLine]);
-                parseIsAdmin(script[currentLine]);
-                parseCheckItem(script[currentLine]);
-                parseCheckPKPoint(script[currentLine]);
-                parseConquestAvailable(script[currentLine]);
-                parseCheckGender(script[currentLine]);
-                parseRandom(script[currentLine]);
-                parseInGuild(script[currentLine]);
-                parseCheckGold(script[currentLine]);
-                parseConquesOwner(script[currentLine]);
-                parseAffordGate(script[currentLine]);
-                parseAffordGuard(script[currentLine]);
-                parseAffordSiege(script[currentLine]);
-                parseAffordWall(script[currentLine]);
+                parseCheckLevel(script[currentLine].toUpperCase());
+                parseIsAdmin(script[currentLine].toUpperCase());
+                parseCheckItem(script[currentLine].toUpperCase());
+                parseCheckPKPoint(script[currentLine].toUpperCase());
+                parseConquestAvailable(script[currentLine].toUpperCase());
+                parseCheckGender(script[currentLine].toUpperCase());
+                parseRandom(script[currentLine].toUpperCase());
+                parseInGuild(script[currentLine].toUpperCase());
+                parseCheckGold(script[currentLine].toUpperCase());
+                parseConquesOwner(script[currentLine].toUpperCase());
+                parseAffordGate(script[currentLine].toUpperCase());
+                parseAffordGuard(script[currentLine].toUpperCase());
+                parseAffordSiege(script[currentLine].toUpperCase());
+                parseAffordWall(script[currentLine].toUpperCase());
+                parseCheck(script[currentLine].toUpperCase());
+                parseCheckQuest(script[currentLine].toUpperCase());
             }
             if(scriptMode == "TRADE"){
                 //Nothign in here yet but we might write a handler later
@@ -159,7 +164,7 @@ function parseCode(code, run=true){
             scriptJS +="}"
         }
         $('#simulatorModal').modal("show");
-        scriptJS +="} function npc_EXIT(){} npc_MAIN();"
+        scriptJS +="} npc_MAIN();"
         console.log(scriptJS);
         window.eval(scriptJS);
     
@@ -250,11 +255,18 @@ function getIndicesOf(searchStr, str, caseSensitive) {
     return indices;
 }
 
-String.prototype.replaceAll = function(search, replacement) {
+//Old replaceall function dont remove until we know the new one works properly
+String.prototype.replaceAllOld = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 };
 
+//Case insensitive replaceAll
+String.prototype.replaceAll = function(strReplace, strWith) {
+    var esc = strReplace.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    var reg = new RegExp(esc, 'ig');
+    return this.replace(reg, strWith);
+};
 function sanityCheck(code){
     if(code.includes("[")){return true}
     if(code.includes("]")){return true}

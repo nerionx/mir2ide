@@ -78,6 +78,22 @@ function parseCheckPKPoint(code){
             scriptJS +="simPK " + operator + " " + checkpk;
         }
     }
+//Expects a flag however we dont support them fully we just check if we are support to pass this check via a true false option in the sim
+function parseCheck(code){
+    if(code.includes("CHECK ")){ //Space is required after check as there are multiple commands which include the string "CHECK"
+        checkOpenIf();        
+        scriptJS += "simPassFlag == true";
+        openIf=true;
+    }
+}
+//Expects a quest flag but we just check a simulator option to pass quest checks (true/false)
+function parseCheckQuest(code){
+    if(code.includes("CHECKQUEST")){ //Space is required after check as there are multiple commands which include the string "CHECK"
+        checkOpenIf();        
+        scriptJS += "simQuestDone == true";
+        openIf=true;
+    }
+}
 
 function parseConquestAvailable(code){
     if(code.includes("CONQUESTAVAILABLE")){
