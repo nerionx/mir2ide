@@ -3,6 +3,7 @@
        <link rel="stylesheet" href="css/bootstrap.css">
        <link rel="stylesheet" href="css/index2.css">
        <link rel="stylesheet" href="css/codemirror.css">
+       <link rel="stylesheet" href="css/font-awesome.min.css">
         <script src="src/jquery-3.2.1.min.js"></script>
         <script src="src/bootstrap.bundle.min.js"></script>
         <script src="src/codemirror.js"></script>
@@ -21,26 +22,32 @@
     </heading>
   <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <ul class="navbar-nav">
+    <ul class="nav navbar-nav">
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#">File</a>
+          <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#"><span class="fa fa-file"></span>&nbsp File</a>
       <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">New File</a>
+          <a class="dropdown-item" href="#"><span class="fa fa-file"></span>&nbsp New File</a>
           <div class="dropdown-divider"></div>          
-          <a class="dropdown-item" href="#" onclick="openFile()">Open Local File<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
-          <a class="dropdown-item" href="#" download="npcscript.txt" id="saveas">Download Script</a>
+          <a class="dropdown-item" href="#" onclick="openFile()"><span class="fa fa-file-code-o"></span>&nbsp Open Local File<input id="file-open" type="file" name="file-open" style="display: none;"/></a>
+          <a class="dropdown-item" href="#" download="npcscript.txt" id="saveas"><span class="fa fa-floppy-o"></span>&nbsp Download Script</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Exit</a>
+          <a class="dropdown-item" href="#"><span class="fa fa-sign-out"></span>&nbsp Exit</a>
       </div>
       
         </li>
       <li class="nav-item">
-          <a class="nav-link" href="#simulatorModal" onclick="startParse()" data-target="#simulatorModal"><span class="glyphicon glyphicon-play-circle"></span>Run</a>
+          <a class="nav-link" href="#simulatorModal" onclick="startParse()" data-target="#simulatorModal"><span class="fa fa-play-circle"></span>&nbsp Run</a>
           </li>
           <li>
-          <a class="nav-link" href="#"onclick = "startParse(false)"><span class="glyphicon glyphicon-play-circle"></span>Check</a>
-      </li>
+            <a class="nav-link" href="#"onclick = "startParse(false)"><span class="fa fa-check-circle"></span>&nbsp Check</a>
+          </li>
+          </ul>
+          <ul class = "nav navbar-nav navbar-right">
+          <li>
+            <a class="nav-link" data-target="#aboutModal" data-toggle="modal" href="#"onclick = ""><span class="fa fa-user"></span>&nbsp About</a>
+          </li>
       </ul>
+    
   </nav>
 
   <div id="diveditor">
@@ -68,13 +75,29 @@
                   <p id="simulatorEvents"></p>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" onclick="refreshSim()">Refresh</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default fa fa-refresh" onclick="refreshSim()">&nbsp Refresh</button>
+                  <button type="button" class="btn btn-default fa fa-close" data-dismiss="modal">&nbsp Close</button>
               </div>
           </div>
       </div>
   </div>
-
+  <div id="aboutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class ="modal-title">About</h4>
+            </div>
+            <div class="modal-body">
+                Written by Almanac on Edens-Elite<br>
+                if you like it feel free to donate some gold ;)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="refreshSim()">Refresh</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   </body>

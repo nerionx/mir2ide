@@ -154,6 +154,7 @@ function parseCode(code, run=true){
 
         }
     }
+    if(errors==false){writeError2("No Errors",0,"good")}
     //End the script and run it
     if(errors==false && run==true){
         if(scriptMode == "SAY"){scriptJS+="';"} //Finish say command if it hasnt already ended
@@ -199,6 +200,7 @@ function getLines(code){
 function writeError2(msg,line=0,type="critical"){
     var classes="simconsole";
     if(type=="critical"){errors=true; classes="bg-danger text-white"} //Critical error dont run the parsed code as it will be incorrect
+    if(type=="good"){classes="bg-success text-white"}
     if(!line==0){
         msg += " on line number " + (line+1);
     }
