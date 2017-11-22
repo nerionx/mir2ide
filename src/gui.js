@@ -61,6 +61,20 @@ function saveAllOptions(){
 
 }
 
+//Replacement for write error, allowing warnings aswelll as criticals which will stop parsing
+function writeError2(msg,line=0,type="critical"){
+    var classes="simconsole";
+    var premessage="";
+    if(type=="critical"){errors=true; classes="bg-danger text-white"; premessage = "Critical: "} //Critical error dont run the parsed code as it will be incorrect
+    if(type=="good"){classes="bg-success text-white";}
+    if(type=="warning"){classes="bg-warning text-white"; premessage = "Warning: "; hadWriteError=true;}
+    if(!line==0){
+        msg += " on line number " + (line+1);
+    }
+    document.getElementById("script-console").innerHTML += "<span style='display: block; width: 100%;' class='"+classes+"'>"+premessage+msg+"</span>";
+
+}
+
 function loadOptions(){
     //Load saved options if they exist
     if(window.localStorage.getItem("player")!==null){

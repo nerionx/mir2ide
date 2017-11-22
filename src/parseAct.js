@@ -40,12 +40,23 @@ function parseDelayGoto(code){
 
     }
 }
+function parseGiveExp(code){
+    if(code.includes("GIVEEXP")){
+        code = code.replace("GIVEEXP ");
+        if(isInt(code)){
+            writeSimulatorEvent("Gave " + code + "exp to player"); 
+        }else{
+            writeError2("Invalid EXP Amount - Value is not an integer",currentLine,"critical");
+        }
 
+    }
+}
 function parseGiveGold(code){
     if(code.includes("GIVEGOLD")){
         code = code.replace("GIVEGOLD ","");
         try{
         player.gold += parseInt(code);
+        writeSimulatorEvent("Added " + code + " to players gold"); 
         
         }
         catch(err){
@@ -59,6 +70,8 @@ function parseTakeGold(code){
         code = code.replace("TAKEGOLD ","");
         try{
             player.gold -= parseInt(code);
+            writeSimulatorEvent("Took " + code + " from players gold"); 
+            
         }
         catch(err){
             writeError2("Invalid gold amount, must be an integer e.g. TAKEGOLD 100",currentLine,"critical");
@@ -79,7 +92,6 @@ function parseGiveItem(code){
     code = code.replaceAll("GIVEITEM ","");
     console.log(code);
     var itemname = code.replace(itemamount,"");
-    console.log("itemname = "+itemname+" itemnumber " + itemamount);
     writeSimulatorEvent("Added "+ itemamount + "x " + itemname + " to inventory"); 
     }
 }
@@ -93,6 +105,8 @@ function parseMov(code){
         newcode = newcode.replace(mirvar+ " ",""); //Only contains the variable value
 
         scriptJS += "var simVar_" + mirvar + " = " + newcode +";";
+        writeSimulatorEvent("Wrote: "+newcode+ " to variable: " + mirvar); 
+        
     }
 }
 
@@ -113,4 +127,46 @@ function parseMove(code){
     }
 }
 
+//This function can accept up to 3 variables, name, amount, level (max level is usually 7 - warn if greater)
+function parseGivePet(code){
+    if(code.toUpperCase().includes("GIVEPET")){
+        code = code.replaceAll("GIVEPET ","");
+        //Find the first space
+        var a = code.indexOf(" ");
+        if(a>-1){
+            var petname = code.substr(0,a);
+            //remove the petname from the code
+            code =code.replaceAll(petname+" ","");
+            a = code.indexOf(" ");
+            if(a>-1){
+                var petamount = code.substr(0,a+1);
+                if(petamount>5){writeError2("Pet amount greater than 5, this is unusual",currentLine,"warning");}
+                if(petamount<0){writeError2("Pet amount less than 0",currentLine,"critical");}
+                code=code.replace(petamount,""); //Dont do a replaceAll here the pet amount and level could be the same
+                if(code!==""){
+                    var petlevel = parseInt(code);
+                    if(petlevel>7){writeError2("Pet level greater than 7 (This is unusual)",currentLine,"warning")}
+                    if(petlevel<0){writeError2("Pet Level less than 0",currentLine,"critical")}
+                }else{
+                    //No petlevel set so use default
+                    var petlevel = 0;
+                }
+            }else{
+                //No values for level or amount so set defaults
+                var petlevel = 0;
+                var petamount = 1;
+            }
+        }else{
+            writeError2("Invalid Parameters for GIVEPET [MonsterName] [Amount] [Level]",currentLine,"critical");
+        }
+        if(petname!==""){
+            writeSimulatorEvent("Gave the player "+ petamount + "x "+petname+" at level "+petlevel);
+        }
+    }
+}
 
+//Checks if a number is or can be converted to a valid integer
+function isInt(value) {
+  var x;
+  return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
+}

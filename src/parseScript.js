@@ -38,6 +38,7 @@ function startParse(run=true){
     currentLine = 0;
     inPage = false;
     errors = false;
+    hadWriteError=false;
     parseCode(codebox,run);
     console.log(scriptJS);
 
@@ -81,6 +82,8 @@ function parseCode(code, run=true){
                 parseTakeGold(script[currentLine].toUpperCase());
                 parseGiveItem(script[currentLine]); //Has player string in it, dont convert to uppercase yet
                 parseMove(script[currentLine]); //Ditto
+                parseGiveExp(script[currentLine].toUpperCase());
+                parseGivePet(script[currentLine]);
             }
             if(scriptMode == "IF"){
                 parseCheckLevel(script[currentLine].toUpperCase());
@@ -112,7 +115,7 @@ function parseCode(code, run=true){
 
         }
     }
-    if(errors==false){writeError2("No Errors",0,"good")}
+    if(errors==false && hadWriteError==false){writeError2("No Errors",0,"good")}
     //End the script and run it
     if(errors==false && run==true){
         if(scriptMode == "SAY"){scriptJS+="';"} //Finish say command if it hasnt already ended
@@ -153,17 +156,7 @@ function getLines(code){
     return script.length;
 }
 
-//Replacement for write error, allowing warnings aswelll as criticals which will stop parsing
-function writeError2(msg,line=0,type="critical"){
-    var classes="simconsole";
-    if(type=="critical"){errors=true; classes="bg-danger text-white"} //Critical error dont run the parsed code as it will be incorrect
-    if(type=="good"){classes="bg-success text-white"}
-    if(!line==0){
-        msg += " on line number " + (line+1);
-    }
-    document.getElementById("script-console").innerHTML += "<span style='display: block; width: 100%;' class='"+classes+"'>"+msg+"</span>";
 
-}
 
 
 
