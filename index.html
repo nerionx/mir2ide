@@ -20,7 +20,7 @@
      <heading>
         <div class="text-white text-center" style='background-color:black;'>The Legend of Mir 2 - Script Editor</div>
     </heading>
-  <body>
+  <body onload="defaultOptions()">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="nav navbar-nav">
       <li class="nav-item dropdown">
@@ -227,6 +227,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default fa fa-thumbs-up" data-dismiss="modal" onclick="saveAllOptions()">&nbsp Save</button>
                 <button type="button" class="btn btn-default fa fa-thumbs-down" data-dismiss="modal">&nbsp Cancel</button>
+                <button type="button" class="btn btn-default fa fa-undo" onclick="defaultOptions(true)">&nbsp Default</button>
             </div>
         </div>
     </div>

@@ -78,7 +78,6 @@ function writeError2(msg,line=0,type="critical"){
 function loadOptions(){
     //Load saved options if they exist
     if(window.localStorage.getItem("player")!==null){
-        console.log("Loading Options");
         player = JSON.parse(window.localStorage.getItem("player"));
         server = JSON.parse(window.localStorage.getItem("server"));
         guild = JSON.parse(window.localStorage.getItem("guild"));
@@ -93,22 +92,22 @@ function loadOptions(){
     }
     for(var key in npc){
         if(npc.hasOwnProperty(key)){
-            if(npc[key]){document.getElementById(key).value = npc[key]};
+            if(npc[key]!==""){document.getElementById(key).value = npc[key]};
         }
     }
     for(var key in map){
         if(map.hasOwnProperty(key)){
-            if(map[key]){document.getElementById(key).value = map[key]};
+            if(map[key]!==""){document.getElementById(key).value = map[key]};
         }
     }
     for(var key in server){
         if(server.hasOwnProperty(key)){
-            if(server[key]){document.getElementById(key).value = server[key]};
+            if(server[key]!==""){document.getElementById(key).value = server[key]};
         }
     }
     for(var key in guild){
         if(guild.hasOwnProperty(key)){
-            if(guild[key]){document.getElementById(key).value = guild[key]};
+            if(guild[key]!==""){document.getElementById(key).value = guild[key]};
         }
     }
 }
@@ -118,3 +117,22 @@ function isInt(value) {
     var x;
     return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
   }
+
+ function defaultOptions(save=false){
+    player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","level":"22","petcount":"5","petlevel":"7","petname":"Oma Warrior",
+                "pearls":"1000","isadmin":"false","isnew":"true","pk":"1","parcelamount":"3","hp":"100","mp":"100","maxhp":"100","maxmp":"100",
+                "armour":"BaseDress(f)","weapon":"WoodenSword","lring":"DragonRing","rring":"RubyRing","lbrace":"MonkBrace","rbrace":"SilverBrace",
+                "necklace":"SkillNecklace","belt":"ChainBelt","boots":"BlackBoots","helmet":"BronzeHelments","amulet":"Amulet",
+                "stone":"DCStone","torch":"EternalFlame","credit":"1000","itemcheck":"true","flagcheck":"true","questcheck":"true"}
+    map = {"x":"50","y":"100","mname":"BichonProvince"}
+    npc = {"nname":"Anna"}
+    guild ={"gname":"Default Guild","wartime":"30","warfee":"10000","ggold":"100000","conquestowner":"true","conquestguard":"Archer - Still Alive",
+                "conquestgate":"Gate - Still Alive","conquestwall":"Wall - Still Alive","conquestsiege":"Siege - Still Alive",
+                "conquestgold":"1000","conquestrate":"10","conquestschedule":"Enemy Guild","conquestavailable":"true","guardcost":"1000",
+                "gatecost":"1000","siegecost":"1000","wallcost":"1000"}
+    server ={"usercount":"10"}
+
+    if(save==true){saveAllOptions()} //Clicked the defaults button
+
+    loadOptions();
+}

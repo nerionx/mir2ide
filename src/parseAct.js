@@ -81,7 +81,6 @@ function parseTakeGold(code){
 }
 
 function parseGiveItem(code){
-    console.log("giveitem");
     if(code.toUpperCase().includes("GIVEITEM")){
         //Do a regex search for an integer
         var searchterms = /\d+/;
