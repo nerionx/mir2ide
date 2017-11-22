@@ -8,7 +8,7 @@ var hadWriteError=false;
 
 //Simulator variables
 var player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","level":"22","petcount":"5","petlevel":"7","petname":"Oma Warrior",
-                "pearls":"1000","isadmin":"false","pk":"1","parcelamount":"3","hp":"100","mp":"100","maxhp":"100","maxmp":"100",
+                "pearls":"1000","isadmin":"false","isnew":"true","pk":"1","parcelamount":"3","hp":"100","mp":"100","maxhp":"100","maxmp":"100",
                 "armour":"BaseDress(f)","weapon":"WoodenSword","lring":"DragonRing","rring":"RubyRing","lbrace":"MonkBrace","rbrace":"SilverBrace",
                 "necklace":"SkillNecklace","belt":"ChainBelt","boots":"BlackBoots","helmet":"BronzeHelments","amulet":"Amulet",
                 "stone":"DCStone","torch":"EternalFlame","credit":"1000","itemcheck":"true","flagcheck":"true","questcheck":"true"}
