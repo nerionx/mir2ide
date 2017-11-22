@@ -88,27 +88,33 @@ function loadOptions(){
     //Put them into the correct box on the UI
     for(var key in player){
         if(player.hasOwnProperty(key)){
-            document.getElementById(key).value = player[key];
+            if(player[key]){document.getElementById(key).value = player[key]};
         }
     }
     for(var key in npc){
         if(npc.hasOwnProperty(key)){
-            document.getElementById(key).value = npc[key];
+            if(npc[key]){document.getElementById(key).value = npc[key]};
         }
     }
     for(var key in map){
         if(map.hasOwnProperty(key)){
-            document.getElementById(key).value = map[key];
+            if(map[key]){document.getElementById(key).value = map[key]};
         }
     }
     for(var key in server){
         if(server.hasOwnProperty(key)){
-            document.getElementById(key).value = server[key];
+            if(server[key]){document.getElementById(key).value = server[key]};
         }
     }
     for(var key in guild){
         if(guild.hasOwnProperty(key)){
-            document.getElementById(key).value = guild[key];
+            if(guild[key]){document.getElementById(key).value = guild[key]};
         }
     }
 }
+
+//Checks if a number is or can be converted to a valid integer
+function isInt(value) {
+    var x;
+    return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
+  }

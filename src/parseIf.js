@@ -11,7 +11,7 @@ function parseIf(code){
 }
 
 function parseCheckLevel(code){
-    if(code.includes("LEVEL")){
+    if(code.includes("LEVEL" && !code.includes("PET"))){
         checkOpenIf();
         //Get the operator
         if(code.includes(">=")){ var operator = ">="; code = code.replace(">= ","")}
@@ -170,6 +170,32 @@ function parseInGuild(code){
             }
         }else{
             scriptJS += "guild.gname !== ''"; //Check if any guild
+        }
+    }
+}
+
+function parseCheckPets(code){
+    if(code.includes("CHECKPETS")){
+        code = code.replaceAll("CHECKPET ","");
+        scriptJS +="player.petname.toUpperCase() == "+ code;
+    }
+}
+
+function parsePetLevel(code){
+    if(code.includes("PETLEVEL")){
+        code = code.replaceAll("PETLEVEL ","");
+        var searchterms = /\d+/;
+        var petcompare = parseInt(code.match(searchterms)); //get the integer
+        code = code.replace(petcompare,"");
+        if(isInt(petcompare)==false){
+            writeError2("Syntax Error, no value for comparison",currentLine,"critical");
+        }else{
+            if(petcompare==""){
+                writeError2("Syntax Error, operator for comparison",currentLine,"critical");
+            }else{
+                if(code.includes("=") && !code.includes("==")){writeError2("Syntax Error, = should be ==",currentLine,"warning")};
+                scriptJS+="player.petlevel "+code+" "+petcompare;
+            }
         }
     }
 }

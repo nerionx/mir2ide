@@ -161,12 +161,24 @@ function parseGivePet(code){
         }
         if(petname!==""){
             writeSimulatorEvent("Gave the player "+ petamount + "x "+petname+" at level "+petlevel);
+            player.petcount = petamount;
+            player.petname = petname;
+            player.petlevel = petlevel;
         }
     }
 }
 
-//Checks if a number is or can be converted to a valid integer
-function isInt(value) {
-  var x;
-  return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
+function parseClearPets(code){  
+    if(code.includes("CLEARPET")){
+        if(player.petname){
+            player.petname = "";
+            player.petcount = 0;
+            player.petlevel = 0;
+            writeSimulatorEvent("Killed the players pets");
+        }else{
+            writeSimulatorEvent("Tried to clear pets, but none existed");
+        }
+    }
 }
+
+

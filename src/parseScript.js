@@ -7,7 +7,7 @@ var currentLine = 0;
 var hadWriteError=false;
 
 //Simulator variables
-var player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","level":"22","petcount":"5","petlevel":"7",
+var player = {"gold":"1000","name":"Player","class":"Taoist","gender":"male","level":"22","petcount":"5","petlevel":"7","petname":"Oma Warrior",
                 "pearls":"1000","isadmin":"false","pk":"1","parcelamount":"3","hp":"100","mp":"100","maxhp":"100","maxmp":"100",
                 "armour":"BaseDress(f)","weapon":"WoodenSword","lring":"DragonRing","rring":"RubyRing","lbrace":"MonkBrace","rbrace":"SilverBrace",
                 "necklace":"SkillNecklace","belt":"ChainBelt","boots":"BlackBoots","helmet":"BronzeHelments","amulet":"Amulet",
@@ -84,6 +84,7 @@ function parseCode(code, run=true){
                 parseMove(script[currentLine]); //Ditto
                 parseGiveExp(script[currentLine].toUpperCase());
                 parseGivePet(script[currentLine]);
+                parseClearPets(script[currentLine].toUpperCase());
             }
             if(scriptMode == "IF"){
                 parseCheckLevel(script[currentLine].toUpperCase());
@@ -102,6 +103,8 @@ function parseCode(code, run=true){
                 parseAffordWall(script[currentLine].toUpperCase());
                 parseCheck(script[currentLine].toUpperCase());
                 parseCheckQuest(script[currentLine].toUpperCase());
+                parseCheckPets(script[currentLine].toUpperCase());
+                parsePetLevel(script[currentLine].toUpperCase());
             }
             if(scriptMode == "TRADE"){
                 //Nothign in here yet but we might write a handler later
@@ -155,10 +158,6 @@ function getLines(code){
     console.log("Script is " + script.length + " lines");
     return script.length;
 }
-
-
-
-
 
 //Pages = functions in javascript
 function parsePage(code){   
