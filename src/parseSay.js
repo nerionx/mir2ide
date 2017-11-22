@@ -25,8 +25,7 @@ function parseSay(code){
 
    function parseSpeech(code){
     
-    if(code.includes("#SAY") == false && code.includes("#ELSESAY") == false){
-        console.log(code.includes("#SAY"));
+    if(code.toUpperCase().includes("#SAY") == false && code.toUpperCase().includes("#ELSESAY") == false){
         var newSpeech = code;
         //Replace variables with strings
         newSpeech = newSpeech.replaceAll("<$NPCNAME>",npc.nname);
