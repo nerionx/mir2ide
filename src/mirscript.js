@@ -89,7 +89,7 @@ codemirror_define_grammar_mode("mirscript", {
                               "NaN", "Infinity"
                               ]}
 ,"keyword"                      : {"autocomplete":true,"tokens":[ 
-                              "#IF", "#ACT", "#SAY", "#ELSESAY", "#ELSEACT"                                
+                              "#IF", "#ACT", "#SAY", "#ELSESAY", "#ELSEACT","#if","#say","#elsesay","#elseact","act"                                
                               ]}
 ,"builtin"                      : {"autocomplete":true,"tokens":[ 
                               "ISADMIN", "LEVEL", "CHECKITEM", 

@@ -143,7 +143,6 @@ function parseSay(code){
     //Test for invalid buttons
     var buttonTest = newSpeech.replaceAll("<span","");
     buttonTest = buttonTest.replaceAll("</span>","");
-    console.log("button text = "+ buttonTest);
     if(buttonTest.includes("<") && buttonTest.includes(">")){
         writeError2("Invalid page links (possibly missing @)",currentLine,"critical");
     }

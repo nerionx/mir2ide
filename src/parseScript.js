@@ -59,7 +59,6 @@ function parseCode(code, run=true){
         if(script[currentLine].includes("[[") || script[currentLine].includes("]]")){
             writeError2("Syntax Error (Double brackets)",currentLine,"critical");
         }
-
         //Check if the line is a comment, do nothing if it is
         if(!script[currentLine].includes(";")){
             if(script[currentLine].toUpperCase().includes("#SAY")){parseSay(script[currentLine])}
