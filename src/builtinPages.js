@@ -62,35 +62,35 @@ function npc_DISASSEMBLE(){
 }
 
 function npc_DOWNGRADE(){
-    writeSimulatorEvent("Downgrade Window Opened");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Downgrade Window Opened";
 }
 
 function npc_RESET(){
-    writeSimulatorEvent("Reset window opened");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Reset window opened";
 }
 
 function npc_PEARLYBUY(){
-    writeSimulatorEvent("Pearl Buy Window Opened");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Pearl Buy Window Opened";
 }
 
 function npc_BUYUSED(){
-    writeSimulatorEvent("Buy Used Item Window Opened");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Buy Used Item Window Opened";
 }
 
 function npc_REFINE(){
-    writeSimulatorEvent("Refine Window Opened");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Refine Window Opened";
 }
 
 function npc_REFINECOLLECT(){
-    writeSimulatorEvent("Collected Recent Refine");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Collected Recent Refine";
 }
 
 function npc_REFINECHECK(){
-    writeSimulatorEvent("Checked Recent Refine");
+    document.getElementById("simulatorEvents"),innerHTML += "<br>Checked Recent Refine";
 }
 
 function npc_EXIT(){
     document.getElementById("simulatorSpeech").innerHTML = "";
-    writeSimulatorEvent("Script has Ended");
+    document.getElementById("simulatorEvents").innerHTML = "Script has Ended";
 
 }

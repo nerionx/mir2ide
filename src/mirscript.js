@@ -66,10 +66,13 @@ codemirror_define_grammar_mode("mirscript", {
                               }
 ,"button"                        : {"type":"escaped-block","escape":"\\","tokens":
                               // javascript literal regular expressions can be parsed similar to strings
-                              ["<",">"                
+                              ["RE::/(<[A-z])/", ">"               
                               ]
                           
                               }
+
+                          
+                              
 ,"coloured_text"                 : {"type":"escaped-block","escape":"\\","tokens":
                               // javascript literal regular expressions can be parsed similar to strings
                               ["/","}"                
