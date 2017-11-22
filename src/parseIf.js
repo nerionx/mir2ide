@@ -60,6 +60,17 @@ function parseCheckGold(code){
             scriptJS +="player.gold " + operator + " " + checkgold;
         }
     }
+function parseCheckCredit(code){
+    if(code.includes("CHECKCREDIT")){
+        checkOpenIf()
+        code = code.replaceAll("checkcredit ","");
+        if(isInt(code)==false){
+            writeError2("Invalid credit value (must be integer)",currentLine,"critical");
+        }else{
+            scriptJS+="player.credit <= "+code;
+        }
+    }
+}
 
 
 function parseCheckPKPoint(code){

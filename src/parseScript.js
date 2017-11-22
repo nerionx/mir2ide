@@ -86,6 +86,7 @@ function parseCode(code, run=true){
                 parseRandom(script[currentLine].toUpperCase());
                 parseInGuild(script[currentLine].toUpperCase());
                 parseCheckGold(script[currentLine].toUpperCase());
+                parseCheckCredit(script[currentLine].toUpperCase())
                 parseConquesOwner(script[currentLine].toUpperCase());
                 parseAffordGate(script[currentLine].toUpperCase());
                 parseAffordGuard(script[currentLine].toUpperCase());
