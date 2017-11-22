@@ -95,6 +95,8 @@ function parseCode(code, run=true){
                 parseCheckQuest(script[currentLine].toUpperCase());
                 parseCheckPets(script[currentLine].toUpperCase());
                 parsePetLevel(script[currentLine].toUpperCase());
+                parseIsNewHuman(script[currentLine].toUpperCase());
+                parseCheckMap(script[currentLine]);
             }
             if(scriptMode == "TRADE"){
                 //Nothign in here yet but we might write a handler later

@@ -6,8 +6,8 @@ function parseIf(code){
         scriptJS +="';";
     }
     scriptMode = "IF"
-    scriptJS += "if(";
-    
+    scriptJS += "if(true "; //The true is a default test which will always pass (It will stop JS errors if the user uses an incorrect #IF function)
+    openIf = true
 }
 
 function parseCheckLevel(code){
@@ -105,18 +105,21 @@ function parseConquestAvailable(code){
 //Expects the conquest number as a variable but we are just gonna pass it based on a true or false in the options
 function parseConquesOwner(code){
     if(code.includes("CONQUESTOWNER")){
+        checkOpenIf();
         scriptJS +="guild.conquestowner == true";
     }
 }
 
 function parseAffordGuard(code){
     if(code.includes("AFFORDGUARD")){
+        checkOpenIf();
         scriptJS+="guild.guardcost <= guild.ggold"
     }
 }
 
 function parseAffordWall(code){
     if(code.includes("AFFORDWALL")){
+        checkOpenIf();
         scriptJS+="guild.wallcost <= guild.ggold"
     }
 }
@@ -124,6 +127,7 @@ function parseAffordWall(code){
 
 function parseAffordGate(code){
     if(code.includes("AFFORDGATE")){
+        checkOpenIf();
         scriptJS+="guild.gatecost <= guild.ggold"
     }
 }
@@ -131,6 +135,7 @@ function parseAffordGate(code){
 
 function parseAffordSiege(code){
     if(code.includes("AFFORDSIEGE")){
+        checkOpenIf();
         scriptJS+="guild.seigecost <= guild.ggold"
     }
 }
@@ -147,6 +152,7 @@ function parseCheckGender(code){
 
 function parseRandom(code){
     if(code.includes("RANDOM")){
+        checkOpenIf();
         var randomNumber = code.replace("RANDOM ","");
         if(!isNaN(parseInt(randomNumber,10))){
             scriptJS += "Math.floor(Math.random()*"+randomNumber+") == "+ randomNumber;
@@ -158,6 +164,7 @@ function parseRandom(code){
 //has 2 behaviors, without an overload it checks if the player is in a guild, with an overload it checks if the player is in the specified guild
 function parseInGuild(code){
     if(code.includes("INGUILD")){
+        checkOpenIf();
         //Is there a space after INGUILD, if so lets assume there is an overload
         if(code.includes("INGUILD ")){
             var guildName = code.replace("INGUILD ","");
@@ -176,6 +183,7 @@ function parseInGuild(code){
 
 function parseCheckPets(code){
     if(code.includes("CHECKPETS")){
+        checkOpenIf();
         code = code.replaceAll("CHECKPET ","");
         scriptJS +="player.petname.toUpperCase() == "+ code;
     }
@@ -183,6 +191,7 @@ function parseCheckPets(code){
 
 function parsePetLevel(code){
     if(code.includes("PETLEVEL")){
+        checkOpenIf();
         code = code.replaceAll("PETLEVEL ","");
         var searchterms = /\d+/;
         var petcompare = parseInt(code.match(searchterms)); //get the integer
@@ -197,6 +206,21 @@ function parsePetLevel(code){
                 scriptJS+="player.petlevel "+code+" "+petcompare;
             }
         }
+    }
+}
+
+function parseIsNewHuman(code){
+    if(code.includes("ISNEWHUMAN")){
+        checkOpenIf();
+        scriptJS +="player.isnew == 'true'";
+    }
+}
+//Expects one parameter which is the map name as a string
+function parseCheckMap(code){
+    if(code.toUpperCase().includes("CHECKMAP")){
+        checkOpenIf();
+        code = code.replaceAll("CHECKMAP ","");
+        scriptJS +="map.mname == '"+code+"'";
     }
 }
 function checkOpenIf(){;
