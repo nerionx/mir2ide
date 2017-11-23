@@ -29,7 +29,7 @@ function parseCheckLevel(code){
 function parseIsAdmin(code){
     if(code.includes("ISADMIN")){
         checkOpenIf();
-        scriptJS += "player.isadmin == true";
+        scriptJS += "player.isadmin == 'true'";
         openif = true;
     }
 }
@@ -38,7 +38,7 @@ function parseIsAdmin(code){
 function parseCheckItem(code){
     if(code.includes("CHECKITEM")){
         checkOpenIf();
-        scriptJS += "player.itemcheck == true";
+        scriptJS += "player.itemcheck == 'true'";
         openIf = true;
     }
 }
@@ -93,7 +93,7 @@ function parseCheckPKPoint(code){
 function parseCheck(code){
     if(code.includes("CHECK ")){ //Space is required after check as there are multiple commands which include the string "CHECK"
         checkOpenIf();        
-        scriptJS += "player.flagcheck == true";
+        scriptJS += "player.flagcheck == 'true'";
         openIf=true;
     }
 }
@@ -101,7 +101,7 @@ function parseCheck(code){
 function parseCheckQuest(code){
     if(code.includes("CHECKQUEST")){ //Space is required after check as there are multiple commands which include the string "CHECK"
         checkOpenIf();        
-        scriptJS += "player.questcheck == true";
+        scriptJS += "player.questcheck == 'true'";
         openIf=true;
     }
 }
@@ -109,7 +109,7 @@ function parseCheckQuest(code){
 function parseConquestAvailable(code){
     if(code.includes("CONQUESTAVAILABLE")){
         checkOpenIf();        
-        scriptJS += "guild.conquestavailable == true";
+        scriptJS += "guild.conquestavailable == 'true'";
         openIf=true;
     }
 }
@@ -117,7 +117,7 @@ function parseConquestAvailable(code){
 function parseConquesOwner(code){
     if(code.includes("CONQUESTOWNER")){
         checkOpenIf();
-        scriptJS +="guild.conquestowner == true";
+        scriptJS +="guild.conquestowner == 'true'";
     }
 }
 
@@ -154,7 +154,7 @@ function parseCheckGender(code){
     if(code.includes("CHECKGENDER")){
         checkOpenIf();
         var checkvalue = code.replace("CHECKGENDER ","");
-        scriptJS += "player.gender == "+checkvalue;
+        scriptJS += "player.gender == '"+checkvalue+"'";
     }
 }
 
@@ -196,7 +196,7 @@ function parseCheckPets(code){
     if(code.includes("CHECKPETS")){
         checkOpenIf();
         code = code.replaceAll("CHECKPET ","");
-        scriptJS +="player.petname.toUpperCase() == "+ code;
+        scriptJS +="player.petname.toUpperCase() == '"+ code+"'";
     }
 }
 

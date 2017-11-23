@@ -44,8 +44,11 @@
           </ul>
           <ul class = "nav navbar-nav navbar-right">
             <li>
-                <a class="nav-link" data-target="#options" data-toggle="modal" href="#"onclick = ""><span class="fa fa-cog"></span>&nbsp Options</a>
-              </li>
+                <a class="nav-link" data-target="#options" data-toggle="modal" href="#"onclick = ""><span class="fa fa-cog"></span>&nbsp Simulator Options</a>
+            </li>
+            <li>
+                <a class="nav-link" data-target="#editoptions" data-toggle="modal" href="#"onclick = ""><span class="fa fa-sliders"></span>&nbsp Editor Options</a>
+            </li>
             <li>
             <a class="nav-link" data-target="#aboutModal" data-toggle="modal" href="#"onclick = ""><span class="fa fa-user"></span>&nbsp About</a>
           </li>
@@ -137,6 +140,28 @@
         </div>
     </div>
 </div>
+<div id="editoptions" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class ="modal-title">Editor Options (Not Yet Implimented)</h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr><th colspan="3" style="color: white; background-color: grey">Window Options</th></tr>
+                    <tr><td>NPC Window Width: </td><td><input type="number" id="editwidth" onchange="saveOptions(this,'editopt')"></td><td>Number of characters per line</td></tr>
+                    <tr><td>Background Colour: </td><td><input type="text" id="editbackground" onchange="saveOptions(this,'editopt')"></td><td>Background colour</td></tr>
+                    <tr><td>Text Colour: </td><td><input type="text" id="edittext" onchange="saveOptions(this,'editopt')"></td><td>Colour of unformatted text</td></tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default fa fa-thumbs-up" onclick="saveAllOptions()">&nbsp Save</button>
+                <button type="button" class="btn btn-default fa fa-thumbs-down" data-dismiss="modal">&nbsp Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div id="options" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -212,16 +237,7 @@
                     
                 </table>
                 <script>
-                function saveOptions(e,varname){
-                    var id = e.id;
-                    var tempscript=varname+"."+id+" = '" +e.value+"';";
-                    window.eval(tempscript);            
-                    window.localStorage.setItem("player",player);               
-                    window.localStorage.setItem("guild",guild);
-                    window.localStorage.setItem("map",map);
-                    window.localStorage.setItem("npc",npc);
-                    window.localStorage.setItem("server",server);
-                    }
+              
                     </script>
             </div>
             <div class="modal-footer">

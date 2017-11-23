@@ -58,6 +58,7 @@ function saveAllOptions(){
     window.localStorage.setItem("guild",JSON.stringify(guild));
     window.localStorage.setItem("map",JSON.stringify(map));
     window.localStorage.setItem("npc",JSON.stringify(npc));
+    window.localStorage.setItem("editopt",JSON.stringify(editopt));
 
 }
 
@@ -83,6 +84,7 @@ function loadOptions(){
         guild = JSON.parse(window.localStorage.getItem("guild"));
         map = JSON.parse(window.localStorage.getItem("map"));
         npc = JSON.parse(window.localStorage.getItem("npc"));
+        editopt = JSON.parse(window.localStorage.getItem("editopt"));
     }
     //Put them into the correct box on the UI
     for(var key in player){
@@ -110,6 +112,12 @@ function loadOptions(){
             if(guild[key]!==""){document.getElementById(key).value = guild[key]};
         }
     }
+    for(var key in editopt){
+        if(editopt.hasOwnProperty(key)){
+            if(editopt[key]!==""){document.getElementById(key).value = editopt[key]};
+        }
+    }
+    
 }
 
 //Checks if a number is or can be converted to a valid integer
@@ -132,7 +140,21 @@ function isInt(value) {
                 "gatecost":"1000","siegecost":"1000","wallcost":"1000"}
     server ={"usercount":"10"}
 
+    editopt = {"editwidth":"50","editbackground":"white","edittext":"black"}
+
     if(save==true){saveAllOptions()} //Clicked the defaults button
 
     loadOptions();
 }
+
+function saveOptions(e,varname){
+    var id = e.id;
+    var tempscript=varname+"."+id+" = '" +e.value+"';";
+    window.eval(tempscript);            
+    window.localStorage.setItem("player",player);               
+    window.localStorage.setItem("guild",guild);
+    window.localStorage.setItem("map",map);
+    window.localStorage.setItem("npc",npc);
+    window.localStorage.setItem("server",server);
+    window.localStorage.setItem("editopt", editopt);
+    }
